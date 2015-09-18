@@ -1,0 +1,31 @@
+\section{Plano de Testes do Software}
+\label{Sec:6-software}
+\paragraph{%
+As funcionalidades foram dividídas em funcionalidades críticas e funcionalidades não-críticas. As funcionalidades críticas são aquelas que, caso falhassem, interromperiam o desenvolvimento do projeto e as não-críticas eram funcionalidades que em caso de falha atrapalhariam o desenvolvimento do trabalho, se tornando um incômodo, porém não o interromperiam. Isso ajudou os membros na hora dos testes ao indicar a pessoa fazendo o teste se o teste deveria ser mais intensamente testado ou não. Cada teste é subdivido em testes de falha e teste de sucesso. No teste de falha, o sistema se encarrega de tratar informações ou comportamentos não esperados num fluxo de trabalho normal (ex: submissão de formulário em branco, erro de autenticação, objetos não encontrados no banco de dados, entre outros). No teste de sucesso, o sistema realiza as tarefas esperadas para um fluxo de trabalho normal (ex: submissão de dados válidos num formulário)
+}
+\subsection{Funcionalidades Críticas}
+\begin{itemize}
+\item{realizar login}
+\item{visualizar o consumo através de gráficos por equipamento ou total}
+\item{Obtenção dos dados da AES eletropaulo}
+\item{importar os dados de consumo de um equipamento}
+\end{itemize}
+%
+\subsection{Funcionalidades Não-Críticas}
+\begin{itemize}
+\item{exportar os dados decosnumo de um equipamento}
+\end{itemize}
+%
+\paragraph{%
+Com essas funcionalidades categorizadas, foram criados casos de teste para verificar o funcionamento do sistema.
+}
+%
+\begin{enumerate}
+\item{
+  Criação de entidade
+}
+\item{Leitura de entidade}
+\item{Atualização de entidade}
+\item{Remoção de entidade}
+
+\end{enumerate}

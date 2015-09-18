@@ -1,5 +1,39 @@
 \section{Software}
 \label{Sec:5-software}
-\paragraph{
-O componente de software teve como base de implementação o framework para desenvolvimento web Django, para a linguagem python.
-}
+
+O componente de software teve como base de implementação o framework para desenvolvimento web Django, para a linguagem python. Várias funções especificadas anteriormente possuem uma certa interdependência entre elas, por exemplo, a função Criar Meta necessita que a função Criar Equipamento esteja previamente desenvolvida. Para isso, adotou-se a seguinte ordem de implementação de funções:
+
+\begin{enumerate}
+	\item{Fazer cadastro}
+	\item{Fazer login}
+	\item{Fazer logout}
+	\item{Recuperar senha}
+	\item{Criar equipamento}
+	\item{Editar equipamento}
+	\item{Remover equipamento}
+	\item{Criar meta}
+	\item{Editar meta}
+	\item{Remover meta}
+	\item{Atualizar taxas da AES}
+	\item{Detectar sensores}
+	\item{Editar sensor}
+	\item{Remover sensor}
+	\item{Configurar sistema}
+	\item{Criar consumo}
+	\item{Importar consumo}
+	\item{Exportar consumo}
+	\item{Visualizar consumo}
+\end{enumerate}
+
+\subsection{Telas principais}
+\subsubsection{Fazer login}
+Ao acessar o sistema pela url raiz, a tela AAAAA está disponível para o usuário. Caso ele possua login basta preencher o formulário e clicar em "Entrar". Caso contrário, o usuário deve clicar no botão "Cadastrar" para ser redirecionado à sua tela de cadastro.
+\subsubsection{Fazer cadastro}
+\subsubsection{Tela principal}
+\subsubsection{Criar equipamento}
+\subsubsection{Listagem de equipamentos}
+\subsubsection{Criar meta}
+\subsubsection{AES}
+\subsubsection{Listagem de sensores}
+\subsubsection{Configurar sistema}
+\subsubsection{Consumo}

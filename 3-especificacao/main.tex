@@ -1,11 +1,10 @@
 \mychapter{Especificação do Projeto}
 \label{Cap:especificacao}
-\paragraph{
-	O sistema será composto por duas partes: hardware, ou seja, os componentes como roteadores, processadores, sensores, entre outros; e software, identificado como o aplicativo de interface entre o usuário e os dados coletados.
-}
-\paragraph{
-	O sistema está brevemente descrito através da Figura 1 e a disposição dos componentes através do diagrama de implantação da figura 2:
-}
+
+O sistema será composto por duas partes: hardware, ou seja, os componentes como roteadores, processadores, sensores, entre outros; e software, identificado como o aplicativo de interface entre o usuário e os dados coletados.
+
+O sistema está brevemente descrito através da figura \ref{fig:esqueminha} e a disposição dos componentes através do diagrama de implantação da figura \ref{fig:diagrama_implantacao}:
+
 \begin{figure}
 \centering
 \includegraphics[width=1\textwidth]{figuras/esqueminha.png}
@@ -17,9 +16,10 @@
 \includegraphics[width=1\textwidth]{figuras/diagrama_implantacao.png}
 \caption{\label{fig:diagrama_implantacao} Diagrama de implantação}
 \end{figure}
-\paragraph{
-	A parte de hardware está separado em dois módulos principais: o módulo de sensoriamento e um módulo coordenador e a parte de software se resume à parte da aplicação web na nuvem.
-}
+
+A parte de hardware está separado em dois módulos principais: o módulo de sensoriamento e um módulo coordenador e a parte de software se resume à parte da aplicação web na nuvem.
+
+\input{3-especificacao/3-premissas}
+\cleardoublepage
 \input{3-especificacao/1-hardware}
 \input{3-especificacao/2-software}
-\input{3-especificacao/3-premissas}
