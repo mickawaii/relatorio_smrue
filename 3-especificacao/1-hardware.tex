@@ -16,7 +16,7 @@ Os componentes físicos do módulo sensor são:
 %
 \subsection{Coordenador}
 
-O módulo coordenador vai ser responsável por fazer requisições para os módulos sensores, tratar os dados de consumo e enviar ao aplicativo.
+O módulo coordenador vai ser responsável por fazer requisições para os módulos sensores, tratar os dados de consumo e enviar ao aplicativo na nuvem.
 
 Os componentes do coordenador são:
 
@@ -78,7 +78,7 @@ A Raspberry Pi 2 Modelo B (figura 3.4) é o computador utilizado no sistema para
 \caption{\label{fig:arduino uno} Arduino UNO R3}
 \end{figure}
 
-Arduino é uma placa programável open-source . No projeto em questão é utilizado como o microcontrolador, que receberá os dados do sensor, fará um tratamento e terá o envio programado desses para o coordenador. Pelo Arduino ser programável e possuir uma interface muito amigável, simplifica essa ponte entre a coleta de dados e a transmissão.
+Arduino é uma placa programável open-source . No projeto em questão é utilizado como o microcontrolador, que receberá os dados do sensor, fará um tratamento e terá o envio programado desses para o coordenador. Pelo Arduino ser programável e possuir uma interface muito amigável, simplifica essa ponte entre a coleta de dados e a transmissão. E sua alta disponibilidade no mercado , assim como o raspberry, facilita sua obtenção.
 
 \begin{itemize}
 \item{microcontrolador ATmega328}
@@ -97,14 +97,14 @@ Arduino é uma placa programável open-source . No projeto em questão é utiliz
 \end{center}
 \end{figure}
 
-É um módulo que permite uma comunicação simples e confiável entre microcontroladores, computadores, sistemas através de uma porta serial. Pode ser utilizado em redes ponto-a-ponto e multi-ponto. Foram escolhidos módulos da série 2 pois são configuráveis.
+É um módulo que permite uma comunicação simples e confiável entre microcontroladores, computadores, sistemas através de uma porta serial com um consumo menor de energia. Pode ser utilizado em redes ponto-a-ponto e multi-ponto. Foram escolhidos módulos da série 2 por serem configuráveis.
 Algumas outras especificações são:
 
 \begin{itemize}
 \item{entradas de 3.3V @ 40mA}
 \item{transmissão de dados máxima de 250kbps}
 \item{potência de saída: 2mW (+3dBm)}
-\item{alcance mãximo de 120m}
+\item{alcance máximo de 120m}
 \item{08 pinos digitais entrada/saída}
 \item{encriptação 128-bit}
 \item{configuração local ou remota}
@@ -119,7 +119,7 @@ Algumas outras especificações são:
 \end{center}
 \end{figure}
 
-É um módulo com porta USB que faz a conexão do módulo XBee a um computador. Isso é necessário para ter acesso aos pinos de comunicação serial e de programação. Ele possui um conversor USB-serial, que traduz os dados entre o computador e o XBee. Possui um botão de reset e um regulador de voltagem para suprir a voltagem necessária para XBee. Além disso possui 4 leds para debug: RX, TX, RSSI e indicador de energia. No projeto, este módulo é utilizado para fazer as configurações iniciais de todos os XBees e para conectar o XBee coordenador ao Raspberry Pi.
+É um módulo com porta USB que faz a conexão do módulo XBee a um computador. Isso é necessário para ter acesso aos pinos de comunicação serial e de programação. Ele possui um conversor USB-serial, que traduz os dados entre o computador e o XBee. Possui um botão de reset e um regulador de voltagem para suprir a voltagem necessária para XBee. Além disso possui 4 leds para debug: RX, TX, RSSI e indicador de energia. No projeto, este módulo é utilizado para fazer as configurações iniciais de todos os XBees e para conectar o XBee coordenador ao Raspberry Pi. Apesar de não ser um dispositivo essencial, este facilita muito nas tarefas citadas,  principalmente por lidar com a alimentação de 3,3V do XBee.
 
 \subsubsection{XBee Shield}
 \begin{figure}[H]

@@ -1,8 +1,11 @@
 \input{config.tex}
-
+\makenomenclature
 \begin{document}
 \include{rosto}
 \include{capa_interna}
+
+\include{resumo}
+\include{abstract}
 
 \frontmatter
 \addcontentsline{toc}{chapter}{Sumário}   
@@ -19,6 +22,8 @@
 \cleardoublepage 
 \addcontentsline{toc}{chapter}{Lista de Codigos}
 \lstlistoflistings
+
+\include{symbols.tex}
 
 \mainmatter
 
