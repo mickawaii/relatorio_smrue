@@ -1,16 +1,54 @@
-\section{Hardware}
+\section{Módulo Sensor e Módulo Coordenador}
 \label{Sec:5-hardware}
-%\subsection{XBeee: configuração}
 
-\subsection{Raspberry - Sistema Operacional}
+\subsection{XBee: configuração}
+O tutorial usado para configurar a rede dos dispositivos XBee encontra-se em \cite{xbee_setup}.
+
+As configurações utilizadas foram: 
+
+\subsubsection{Módulo Sensor:}
+\begin{itemize}
+	\item Versão de Firmware:
+    \begin{itemize}
+    	\item Product Family: XB24-ZB
+        \item Function Set: ZigBee Router AT
+        \item Firmware Version: 22A7
+    \end{itemize}
+    \item Pad ID: BABABA
+        \item Destination Address High: 13A200
+        \item Destination Address Low: 40E4429B
+        \item Data bits: 8
+        \item Baud Rate: 9600
+        \item Parity: No parity
+        \item Stop Bits: One Stop Bit
+\end{itemize}
+
+\subsubsection{Módulo Coordenador:}
+\begin{itemize}
+	\item Versão de Firmware:
+    \begin{itemize}
+    	\item Product Family: XB24-ZB
+        \item Function Set: ZigBee Coordinator API
+        \item Firmware Version: 21A7
+    \end{itemize}
+    \item Pad ID: BABABA
+        \item Destination Address High: 13A200
+        \item Destination Address Low: 40E44285
+        \item Data bits: 8
+        \item Baud Rate: 9600
+        \item Parity: No parity
+        \item Stop Bits: One Stop Bit
+\end{itemize}
+
+\subsection{Raspberry: Sistema Operacional}
 
 Raspberry Pi é um computador, como tal é possível usá-lo sobre um sistema operacional. O sistema operacional usado é o Raspian, baseado no Debian customizado para rodar no raspberry pi. Apesar de teoricamente não ser necessário o raspberry usar um sistema operacional, facilita muito o desenvolvimento tal equipamento conter uma interface amigável para seu uso.
 
-\subsection{Raspberry - Adaptador Wifi}
+\subsection{Raspberry: Adaptador Wifi}
 
 Após o sistema Raspian ser instalado no cartão de memória, foi necessário configurar o adaptador Wifi. O modelo usado é o TP-Link TL-WN723N.
 
-%\subsubsection{Procedimentos}
+\subsubsection{Procedimentos}
 %\begin{lstlisting}
 %wget https://dl.dropboxusercontent.com/u/80256631/8188eu-3.18.11-v7-781.tar.gz
 %tar xzf 8188eu-3.18.11-v7-781.tar.gz
@@ -66,4 +104,53 @@ Para isso, o programa do primeiro teste foi reescrito para receber o pacote e en
 
 Em um primeiro momento, quando o sensor nem está no sistema,  o servidor retorna um erro HTTP 500 (erro de servidor), isso porque apesar do sensor ter sido criado no sistema, este não está vinculado a nenhum equipamento. Após vincular o sensor a um equipamento na tela de configurações, pode-se ver que o servidor então retorna um status 201, que mostra que o consumo foi criado.
 
+\subsection{Verificador de tensão}
+
+Para verificar a tensão foi usado um transformador para rebaixar a tensão da tomada. Na imagem é possível observar uma tomada de 110V sendo rebaixada para 7,2 V.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=7cm,keepaspectratio]{figuras/sensor-tensao.jpg} 
+\caption{\label{fig:sensor-tensao} Teste do transformador}
+\end{figure}
+
+Em seguida a saída foi retificada com um retificador de onda completa e filtrada com um capacitor e dividida por divisão de tensão com resistores para que fosse possível diferenciar uma tensão de 220V e 110V no arduino para enviar ao raspberry.
+
+A figura \ref{fig:teste-medicao-voltagem} mostra a montagem para tal e a figura \ref{fig:teste-medicao-voltagem-osc} mostra a saída no osciloscópio.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=7cm,keepaspectratio]{figuras/teste-medicao-voltagem.jpg} 
+\caption{\label{fig:teste-medicao-voltagem} Teste de medição de voltagem} 
+\end{figure}
+
+% \begin{figure}[H]
+% \centering
+% \includegraphics[width=7cm,keepaspectratio]{figuras/teste-medicao-voltagem-osc.jpg} 
+% \caption{\label{fig:teste-medicao-voltagem-osc} Teste de medição de voltagem com arduino - saída do osciloscópio}
+% \end{figure}
+
+Em seguida a saída retificada e dividida foi posta como entrada para um pino de leitura analógica do Arduino para a medição, para 110V e em seguida, 220V. A saída resultante no terminal serial do arduino \ref{fig:teste-medida-voltagem-terminal} foi a seguinte
+
+% \begin{figure}[H]
+% \centering
+% \includegraphics[width=7cm,keepaspectratio]{figuras/teste-medicao-voltagem-terminal.jpg} 
+% \caption{\label{fig:teste-medicao-voltagem-terminal} Teste de medição de voltagem com arduino - saída do osciloscópio}
+% \end{figure}
+
+\subsection{Sensor de corrente}
+
+Para o sensor de corrente, dado que a saída do sensor é alternada, foi necessário fazer um pequeno circuito para que as informações coletadas estivessem em uma faixa legível ao arduíno. Para isso, foi colocado uma resistência entre as saídas do sensor, resistência essa que deveria, em 30A (corrente máxima do sensor), resultar em uma voltagem máxima de 2,5V para então adicionar um offset de 2,5V, possibilitando amostragens em todos os pontos da onda. Como apenas o valor de pico é relevante para calcular a potência aparente, 
+
+% CONTINUAR AQUI
+
+\subsection{Integrando as partes}
+
+Após os testes anteriores de comunicação entre o módulo sensor, módulo coordenador e a medição de corrente e voltagem, o conjunto foi testado. O código \ref{lst:arduino-code} foi carregado no arduino para a coleta dos dados de corrente e voltagem e o envio destes para o módulo coordenador.
+
+\lstinputlisting[language=C, caption=arduino.c, label={lst:arduino-code}]{Anexos/arduino.c}
+
+O módulo coordenador foi configurado para executar o seguinte programa em python (código \ref{lst:raspberry-code}), logo após ligar o raspberry, para a inicialização da interface entre os sensores e a aplicação web. Uma vez com o programa em execução, o módulo coordenador estará pronto para escutar as requisições de envio de dados coletados dos módulos sensores. 
+
+\lstinputlisting[language=Python, caption=raspberry.py, label={lst:raspberry-code}]{Anexos/raspberry.py}
 

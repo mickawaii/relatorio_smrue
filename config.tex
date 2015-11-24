@@ -1,4 +1,4 @@
-\documentclass[a4paper,12pt,openany,oneside]{book}
+\documentclass[a4paper,10pt,openany,oneside]{book}
 
 \usepackage{changepage}
 \usepackage[brazilian]{babel}
@@ -19,12 +19,14 @@
 \usepackage{caption}
 \usepackage{color}
 \usepackage{nomencl}
+\usepackage{fontspec}
 
 \definecolor{lightgray}{rgb}{0.95,0.95,0.95}
-
+\linespread{1.25}
 \newcommand{\mychapter}[1]{\chapter{#1}\thispagestyle{empty}}
 \newcommand{\mychapterstar}[1]{\chapter*{#1}\thispagestyle{empty}}
 \renewcommand{\familydefault}{\sfdefault}
+\setmainfont{Arial}
 \renewcommand\lstlistlistingname{Lista de Códigos}
 \titleformat{\subsubsection}
   {\normalfont\scshape}{\thesection}{1em}{}
