@@ -1,0 +1,494 @@
+\subsection{Casos de uso}
+
+Os casos de uso do sistema estão listados na tabela \ref{tab:casos_de_uso}.
+
+\begin{table}
+\centering
+{\renewcommand{\arraystretch}{1.5}
+\renewcommand{\tabcolsep}{0.2cm}
+\begin{tabular}{|c|c|}
+\hline
+\textbf{Funções} & \textbf{Casos de uso} \\
+\hline
+\multirow{4}{*}{Gerenciar conta} & Fazer cadastro\\
+& Fazer login\\
+& Fazer logout\\
+& Recuperar senha\\
+\hline
+\multirow{3}{*}{Gerenciar equipamentos} & Criar equipamento\\
+& Editar equipamento\\
+& Remover equipamento\\
+\hline
+\multirow{3}{*}{Gerenciar sensores} & Detectar sensores\\
+& Editar sensor\\
+& Remover sensor\\
+\hline
+\multirow{3}{*}{Gerenciar metas} & Criar meta\\
+& Editar meta\\
+& Remover meta\\
+\hline
+\multirow{4}{*}{Gerenciar consumo} & Criar consumo\\
+& Visualizar consumo\\
+& Importar consumo\\
+& Exportar consumo\\
+\hline
+Atualizar taxas da AES & Atualizar taxas da AES\\
+\hline
+Configurar sistema & Configurar sistema\\
+\hline
+\end{tabular}}
+\caption{\label{tab:casos_de_uso} casos de uso.}
+\end{table}
+%
+\subsection{Descrição dos casos de uso}
+
+A seguir são descritos os casos de uso do sistema. 
+
+% ************************************************
+% 1 - GERENCIAR CONTA
+% ************************************************
+\subsubsection{Caso de Uso 1: Gerenciar conta}
+\subsubsection{Caso de Uso 1.1: Fazer cadastro}
+\begin{description}
+	\item[Descrição:] inserção de um novo usuário comum no sistema
+	\item[Evento iniciador:] solicitação de cadastro
+	\item[Atores:] usuário
+	\item[Pré-condição:] sistema exibindo tela de solicitação de cadastro
+	\item[Sequência de eventos:] \hfill
+		\begin{enumerate}
+			\item{Usuário solicita cadastro}
+			\item{Sistema exibe o formulário de cadastro}
+			\item{Usuário insere os seus dados}
+			\item{Sistema insere o novo usuário e exibe o resultado}
+		\end{enumerate}
+	\item[Pós-condição:] novo usuário cadastrado, usuário é logado automaticamente e é exibida a tela inicial
+	\item[Extensões:] \hfill
+		\begin{enumerate}
+			\item{\textbf{Usuário a ser cadastrado já existe:} sistema apresenta uma mensagem ao usuário (passo 4)}
+			\item{\textbf{Dados do usuário não consistentes:} sistema apresenta mensagem de erro ao usuário (passo 4)}
+		\end{enumerate}
+	\item[Inclusões:] \hfill
+		\begin{enumerate}
+			\item{Buscar usuário (passo 4)}
+		\end{enumerate}
+\end{description}
+%
+\subsubsection{Caso de Uso 1.2: Fazer login}
+\begin{description}
+	\item[Descrição:] criar uma sessão do usuário no sistema
+	\item[Evento iniciador:] solicitação de login
+	\item[Atores:] usuário
+	\item[Pré-condição:] usuário cadastrado e não há usuário logado
+	\item[Sequência de eventos:] \hfill
+		\begin{enumerate}
+			\item{usuário solicita login}
+			\item{sistema exibe formulário para login}
+			\item{usuário insere os dados de login}
+			\item{sistema cria uma sessão para o usuário e redireciona para a página inicial}
+		\end{enumerate}
+	\item[Pós-condição:] sessão criada e sistema exibe a tela inicial
+	\item[Extensões:] \hfill
+		\begin{enumerate}
+			\item{\textbf{Usuário não encontrado:} sistema apresenta uma mensagem de erro ao usuário (passo 4)}
+			\item{\textbf{Dados não consistentes:} sistema apresenta uma mensagem de erro ao usuário (passo 4)}
+		\end{enumerate}
+	\item[Inclusões:] \hfill
+		\begin{enumerate}
+			\item{Buscar usuário (passo 4)}
+		\end{enumerate}
+\end{description}
+%
+\subsubsection{Caso de Uso 1.3: Fazer logout}
+\begin{description}
+	\item[Descrição:] encerrar a sessão do usuário atual no sistema
+	\item[Evento iniciador:] solicitação de logout
+	\item[Atores:] usuário
+	\item[Pré-condição:] usuário logado
+	\item[Sequência de eventos:] \hfill
+		\begin{enumerate}
+			\item{usuário solicita logout}
+			\item{sistema encerra a sessão atual, e redireciona para a página de login}
+		\end{enumerate}
+	\item[Pós-condição:] sessão encerrada e sistema exibe tela de login
+\end{description}
+%
+\subsubsection{Caso de Uso 1.4: Recuperar senha}
+\begin{description}
+	\item[Descrição:] recuperar a senha do usuário
+	\item[Evento iniciador:] solicitação de recuperação de senha
+	\item[Atores:] usuário
+	\item[Pré-condição:] usuário cadastrado, não há usuário logado e sistema exibindo tela de login
+	\item[Sequência de eventos:] \hfill
+		\begin{enumerate}
+			\item{usuário solicita recuperação de senha}
+			\item{sistema exibe formulário para recuperação de senha}
+			\item{usuário insere o e-mail}
+			\item{sistema envia e-mail para recuperar a senha e exibe mensagem}
+			\item{usuário clica no link para recuperar senha no e-mail}
+			\item{sistema exibe o formulário para recuperar a senha}
+			\item{usuário insere os dados pedidos}
+			\item{sistema atualiza a senha do usuário, autentica o usuário e redireciona para a tela inicial}
+		\end{enumerate}
+	\item[Pós-condição:] senha do usuário atualizada, usuário autenticado e sistema mostra a tela inicial
+	\item[Extensões:] \hfill
+		\begin{enumerate}
+			\item{\textbf{Dados não consistentes:} sistema apresenta uma mensagem de erro ao usuário (passo 4, 8)}
+			\item{\textbf{Senha antiga incorreta:} sistema apresenta uma mensagem de erro ao usuário (passo 8)}
+		\end{enumerate}
+	\item[Inclusões:] \hfill
+		\begin{enumerate}
+			\item{Buscar usuário (passo 8)}
+		\end{enumerate}
+\end{description}
+% ************************************************
+% 2 - GERENCIAR EQUIPAMENTO
+% ************************************************
+\subsubsection{Caso de Uso 2: Gerenciar equipamentos}
+\subsubsection{Caso de Uso 2.1: Criar equipamento}
+\begin{description}
+	\item[Descrição:] criar um novo equipamento
+	\item[Evento iniciador:] solicitação de criação de equipamento
+	\item[Atores:] usuário
+	\item[Pré-condição:] usuário logado e sistema exibindo listagem de equipamentos
+	\item[Sequência de eventos:] \hfill
+		\begin{enumerate}
+			\item{usuário solicita criação de equipamento}
+			\item{sistema exibe formulário para criação}
+			\item{usuário insere os dados para criação}
+			\item{sistema cria um equipamento e redireciona para a listagem de equipamentos}
+		\end{enumerate}
+	\item[Pós-condição:] equipamento criado e sistema exibe listagem de equipamentos
+	\item[Extensões:] \hfill
+		\begin{enumerate}
+			\item{\textbf{Dados não consistentes:} sistema apresenta uma mensagem de erro ao usuário (passo 4)}
+			\item{\textbf{Equipamento já existe:} sistema apresenta uma mensagem de erro ao usuário (passo 4)}
+		\end{enumerate}
+	\item[Inclusões:] \hfill
+		\begin{enumerate}
+			\item{Buscar equipamento (passo 4)}
+		\end{enumerate}
+\end{description}
+%
+\subsubsection{Caso de Uso 2.2: Editar equipamento}
+\begin{description}
+	\item[Descrição:] editar um equipamento
+	\item[Evento iniciador:] solicitação de edição de equipamento
+	\item[Atores:] usuário
+	\item[Pré-condição:] usuário logado, existem equipamentos e sistema exibindo listagem de equipamentos
+	\item[Sequência de eventos:] \hfill
+		\begin{enumerate}
+			\item{usuário seleciona o equipamento desejado para edição}
+			\item{sistema exibe formulário para edição}
+			\item{usuário altera os dados desejados}
+			\item{sistema atualiza o equipamento e redireciona para a listagem de equipamentos}
+		\end{enumerate}
+	\item[Pós-condição:] equipamento atualizado e sistema exibe listagem de equipamentos
+	\item[Extensões:] \hfill
+		\begin{enumerate}
+			\item{\textbf{Dados não consistentes:} sistema apresenta uma mensagem de erro ao usuário (passo 4)}
+		\end{enumerate}
+	\item[Inclusões:] \hfill
+		\begin{enumerate}
+			\item{Buscar equipamento (passo 2, 4)}
+		\end{enumerate}
+\end{description}
+%
+\subsubsection{Caso de Uso 2.3: Remover equipamento}
+\begin{description}
+	\item[Descrição:] remover um equipamento
+	\item[Evento iniciador:] solicitação de remoção de equipamento
+	\item[Atores:] usuário
+	\item[Pré-condição:] usuário logado, existem equipamentos e sistema exibindo listagem de equipamentos
+	\item[Sequência de eventos:] \hfill
+		\begin{enumerate}
+			\item{usuário seleciona o equipamento desejado para remoção}
+			\item{sistema pede confirmação para remoção}
+			\item{usuário confirma}
+			\item{sistema remove o equipamento e redireciona para a listagem de equipamentos}
+		\end{enumerate}
+	\item[Pós-condição:] equipamento removido e sistema exibe listagem de equipamentos
+	\item[Extensões:] \hfill
+		\begin{enumerate}
+			\item{\textbf{Usuário não confirma:} sistema não remove e volta para a tela de listagem (passo 4)}
+		\end{enumerate}
+	\item[Inclusões:] \hfill
+		\begin{enumerate}
+			\item{Buscar equipamento (passo 2, 4)}
+		\end{enumerate}
+\end{description}
+% ************************************************
+% 3 - GERENCIAR SENSORES
+% ************************************************
+\subsubsection{Caso de Uso 3: Gerenciar sensores}
+\subsubsection{Caso de Uso 3.1: Detectar sensor}
+\begin{description}
+	\item[Descrição:] detectar um sensor
+	\item[Evento iniciador:] solicitação de detecção de sensores
+	\item[Atores:] usuário
+	\item[Pré-condição:] usuário logado e sistema exibindo listagem de sensores
+	\item[Sequência de eventos:] \hfill
+		\begin{enumerate}
+			\item{usuário solicita detecção de sensor}
+			\item{sistema detecta e cria um sensor no sistema com status ativo e atualiza a lista de sensores}
+		\end{enumerate}
+	\item[Pós-condição:] sensor criado e sistema exibe listagem de sensores
+	\item[Extensões:] \hfill
+		\begin{enumerate}
+			\item{\textbf{Sensor já existe no sistema:} sistema atualiza o status do sensor para ativo (passo 2)}
+		\end{enumerate}
+	\item[Inclusões:] \hfill
+		\begin{enumerate}
+			\item{Buscar sensor (passo 2)}
+		\end{enumerate}
+\end{description}
+%
+\subsubsection{Caso de Uso 3.2: Editar sensor}
+\begin{description}
+	\item[Descrição:] editar um sensor
+	\item[Evento iniciador:] solicitação de edição de sensor
+	\item[Atores:] usuário
+	\item[Pré-condição:] usuário logado, existem sensores e sistema exibindo listagem de sensores
+	\item[Sequência de eventos:] \hfill
+		\begin{enumerate}
+			\item{usuário seleciona o sensor desejado para edição}
+			\item{sistema exibe formulário para edição}
+			\item{usuário altera os dados desejados}
+			\item{sistema atualiza o sensor e redireciona para a listagem de sensores}
+		\end{enumerate}
+	\item[Pós-condição:] sensor atualizado e sistema exibe listagem de sensores
+	\item[Extensões:] \hfill
+		\begin{enumerate}
+			\item{\textbf{Dados não consistentes:} sistema apresenta uma mensagem de erro ao usuário (passo 4)}
+		\end{enumerate}
+	\item[Inclusões:] \hfill
+		\begin{enumerate}
+			\item{Buscar sensor (passo 2, 4)}
+		\end{enumerate}
+\end{description}
+%
+\subsubsection{Caso de Uso 3.3: Remover sensor}
+\begin{description}
+	\item[Descrição:] remover um sensor
+	\item[Evento iniciador:] solicitação de remoção de sensor
+	\item[Atores:] usuário
+	\item[Pré-condição:] usuário logado, existem sensores e sistema exibindo listagem de sensores
+	\item[Sequência de eventos:] \hfill
+		\begin{enumerate}
+			\item{usuário seleciona o sensor desejado para remoção}
+			\item{sistema pede confirmação para remoção}
+			\item{usuário confirma}
+			\item{sistema remove o sensor e redireciona para a listagem de sensores}
+		\end{enumerate}
+	\item[Pós-condição:] sensor removido e sistema exibe listagem de sensores
+	\item[Extensões:] \hfill
+		\begin{enumerate}
+			\item{\textbf{Usuário não confirma:} sistema não remove e volta para a tela de listagem (passo 4)}
+		\end{enumerate}
+	\item[Inclusões:] \hfill
+		\begin{enumerate}
+			\item{Buscar sensor (passo 2, 4)}
+		\end{enumerate}
+\end{description}
+% ************************************************
+% 4 - GERENCIAR META
+% ************************************************
+\subsubsection{Caso de Uso 4: Gerenciar metas}
+\subsubsection{Caso de Uso 4.1: Criar meta}
+\begin{description}
+	\item[Descrição:] criar uma nova meta
+	\item[Evento iniciador:] solicitação de criação de meta
+	\item[Atores:] usuário
+	\item[Pré-condição:] usuário logado e sistema exibindo listagem de metas
+	\item[Sequência de eventos:] \hfill
+		\begin{enumerate}
+			\item{usuário solicita criação de meta}
+			\item{sistema exibe formulário para criação}
+			\item{usuário insere os dados para criação}
+			\item{sistema cria uma meta e redireciona para a listagem de metas}
+		\end{enumerate}
+	\item[Pós-condição:] meta criada e sistema exibe listagem de metas
+	\item[Extensões:] \hfill
+		\begin{enumerate}
+			\item{\textbf{Dados não consistentes:} sistema apresenta uma mensagem de erro ao usuário (passo 4)}
+			\item{\textbf{Meta já existe:} sistema apresenta uma mensagem de erro ao usuário (passo 4)}
+		\end{enumerate}
+	\item[Inclusões:] \hfill
+		\begin{enumerate}
+			\item{Buscar meta (passo 4)}
+		\end{enumerate}
+\end{description}
+%
+\subsubsection{Caso de Uso 4.2: Editar meta}
+\begin{description}
+	\item[Descrição:] editar uma meta
+	\item[Evento iniciador:] solicitação de edição de meta
+	\item[Atores:] usuário
+	\item[Pré-condição:] usuário logado, existem metas e sistema exibindo listagem de metas
+	\item[Sequência de eventos:] \hfill
+		\begin{enumerate}
+			\item{usuário seleciona a meta desejado para edição}
+			\item{sistema exibe formulário para edição}
+			\item{usuário altera os dados desejados}
+			\item{sistema atualiza a meta e redireciona para a listagem de metas}
+		\end{enumerate}
+	\item[Pós-condição:] meta atualizada e sistema exibe listagem de metas
+	\item[Extensões:] \hfill
+		\begin{enumerate}
+			\item{\textbf{Dados não consistentes:} sistema apresenta uma mensagem de erro ao usuário (passo 4)}
+		\end{enumerate}
+	\item[Inclusões:] \hfill
+		\begin{enumerate}
+			\item{Buscar meta (passo 2, 4)}
+		\end{enumerate}
+\end{description}
+%
+\subsubsection{Caso de Uso 4.3: Remover meta}
+\begin{description}
+	\item[Descrição:] remover uma meta
+	\item[Evento iniciador:] solicitação de remoção de meta
+	\item[Atores:] usuário
+	\item[Pré-condição:] usuário logado, existem metas e sistema exibindo listagem de metas
+	\item[Sequência de eventos:] \hfill
+		\begin{enumerate}
+			\item{usuário seleciona a meta desejado para remoção}
+			\item{sistema pede confirmação para remoção}
+			\item{usuário confirma}
+			\item{sistema remove a meta e redireciona para a listagem de metas}
+		\end{enumerate}
+	\item[Pós-condição:] meta removida e sistema exibe listagem de metas
+	\item[Extensões:] \hfill
+		\begin{enumerate}
+			\item{\textbf{Usuário não confirma:} sistema não remove e volta para a tela de listagem (passo 4)}
+		\end{enumerate}
+	\item[Inclusões:] \hfill
+		\begin{enumerate}
+			\item{Buscar meta (passo 2, 4)}
+		\end{enumerate}
+\end{description}
+% ************************************************
+% 5 - GERENCIAR CONSUMO
+% ************************************************
+\subsubsection{Caso de Uso 5: Gerenciar consumos}
+\subsubsection{Caso de Uso 5.1: Criar consumo}
+\begin{description}
+	\item[Descrição:] inserir consumos no sistema
+	\item[Evento iniciador:] solicitação para criação de consumo
+	\item[Atores:] módulo coordenador
+	\item[Pré-condição:] módulo coordenador ligado e sistema online
+	\item[Sequência de eventos:] \hfill
+		\begin{enumerate}
+			\item{módulo coordenador solicita criação de consumo}
+			\item{sistema cria o consumo}
+		\end{enumerate}
+	\item[Pós-condição:] consumo criado
+	\item[Extensões:] \hfill
+		\begin{enumerate}
+			\item{\textbf{Perda de conexão:} consumo não é criado (passo 2)}
+		\end{enumerate}
+\end{description}
+%
+\subsubsection{Caso de Uso 5.2: Visualizar consumo}
+\begin{description}
+	\item[Descrição:] visualizar os consumos na forma de gráficos
+	\item[Evento iniciador:] solicitação de geração de gráfico
+	\item[Atores:] usuário
+	\item[Pré-condição:] usuário logado, existem consumos e sistema exibindo tela de consumo
+	\item[Sequência de eventos:] \hfill
+		\begin{enumerate}
+			\item{usuário configura os parâmetros e solicita geração do gráfico}
+			\item{sistema exibe o gráfico de consumo}
+		\end{enumerate}
+	\item[Pós-condição:] sistema exibe gráfico de consumo
+	\item[Extensões:] \hfill
+		\begin{enumerate}
+			\item{\textbf{Dados não consistentes:} sistema apresenta uma mensagem de erro ao usuário (passo 2)}
+		\end{enumerate}
+	\item[Inclusões:] \hfill
+		\begin{enumerate}
+			\item{Buscar consumos (passo 2)}
+		\end{enumerate}
+\end{description}
+%
+\subsubsection{Caso de Uso 5.3: Importar consumos}
+\begin{description}
+	\item[Descrição:] importar consumos por csv
+	\item[Evento iniciador:] solicitação de importação de consumos
+	\item[Atores:] usuário
+	\item[Pré-condição:] usuário logado, sistema exibindo tela de consumo
+	\item[Sequência de eventos:] \hfill
+		\begin{enumerate}
+			\item{usuário insere o arquivo csv e solicita importação de consumos}
+			\item{sistema lê o csv, cria os consumos e exibe tela de consumo}
+		\end{enumerate}
+	\item[Pós-condição:] novos consumos criados e sistema exibe tela de consumo
+	\item[Extensões:] \hfill
+		\begin{enumerate}
+			\item{\textbf{Dados não consistentes:} sistema apresenta uma mensagem de erro ao usuário (passo 2)}
+		\end{enumerate}
+\end{description}
+%
+\subsubsection{Caso de Uso 5.4: Exportar consumos}
+\begin{description}
+	\item[Descrição:] exportar consumos por csv
+	\item[Evento iniciador:] solicitação de exportação de consumos
+	\item[Atores:] usuário
+	\item[Pré-condição:] usuário logado, existem consumos e sistema exibindo tela de consumo
+	\item[Sequência de eventos:] \hfill
+		\begin{enumerate}
+			\item{usuário seleciona o período desejado do consumo para exportação}
+			\item{sistema disponibiliza o download do csv}
+		\end{enumerate}
+	\item[Pós-condição:] sistema exibe arquivo de csv
+	\item[Inclusões:] \hfill
+		\begin{enumerate}
+			\item{Buscar consumo (passo 2)}
+		\end{enumerate}
+\end{description}
+% ************************************************
+% 6 - ATUALIZAR TAXAS DA AES
+% ************************************************
+\subsubsection{Caso de Uso 6: Atualizar taxas da AES}
+\begin{description}
+	\item[Descrição:] atualizar dados de custo da AES Eletropaulo no sistema
+	\item[Evento iniciador:] solicitação de atualização das taxas
+	\item[Atores:] usuário
+	\item[Pré-condição:] usuário logado e sistema exibindo tela de listagem de taxas
+	\item[Sequência de eventos:] \hfill
+		\begin{enumerate}
+			\item{usuário solicita atualização de taxas}
+			\item{sistema busca dados do site da AES Eletropaulo e cria taxas no sistema}
+		\end{enumerate}
+	\item[Pós-condição:] taxas criadas e sistema exibe listagem de taxas
+	\item[Extensões:] \hfill
+		\begin{enumerate}
+			\item{\textbf{Taxa já existe no sistema:} sistema atualiza a taxa correspondente (passo 2)}
+		\end{enumerate}
+	\item[Inclusões:] \hfill
+		\begin{enumerate}
+			\item{Buscar taxa (passo 2)}
+		\end{enumerate}
+\end{description}
+% ************************************************
+% 7 - CONFIGURAR SISTEMA
+% ************************************************
+\subsubsection{Caso de Uso 7: Configurar sistema}
+\begin{description}
+	\item[Descrição:] mudar configuração do sistema
+	\item[Evento iniciador:] solicitação de mudança de configuração do sistema
+	\item[Atores:] usuário
+	\item[Pré-condição:] usuário logado e sistema exibindo tela de configuração
+	\item[Sequência de eventos:] \hfill
+		\begin{enumerate}
+			\item{usuário muda a configuração e solicita salvar a configuração}
+			\item{sistema salva as configurações e retorna para tela de configuração}
+		\end{enumerate}
+	\item[Pós-condição:] configurações salvas e sistema mostra tela de configuração
+	\item[Extensões:] \hfill
+		\begin{enumerate}
+			\item{\textbf{Dados inconsistentes:} sistema mostra mensagem de erro ao usuário (passo 2)}
+		\end{enumerate}
+	\item[Inclusões:] \hfill
+		\begin{enumerate}
+			\item{Buscar configuração do usuário (passo 2)}
+		\end{enumerate}
+\end{description}

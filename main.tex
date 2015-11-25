@@ -1,0 +1,47 @@
+\input{config.tex}
+\makenomenclature
+\begin{document}
+\include{rosto}
+\include{capa_interna}
+\include{ficha_catalografica}
+\include{agradecimentos}
+
+\include{resumo}
+\include{abstract}
+
+\frontmatter
+\addcontentsline{toc}{chapter}{Sumário}   
+\tableofcontents
+
+\cleardoublepage 
+\addcontentsline{toc}{chapter}{Lista de Figuras}  
+\listoffigures  
+
+\cleardoublepage 
+\addcontentsline{toc}{chapter}{Lista de Tabelas} 
+\listoftables  
+
+\cleardoublepage 
+\addcontentsline{toc}{chapter}{Lista de Codigos}
+\lstlistoflistings
+
+\include{symbols.tex}
+
+\mainmatter
+
+\pagestyle{headings}
+
+\include{1-introducao/1-introducao}
+\include{2-aspectos_conceituais/1-conceitos}
+\include{3-especificacao/main}
+\include{4-Metodologia/1-introducao}
+\include{5-implementacao/main}
+\include{6-Testes_e_Avaliacao/main}
+\include{7-Consideracoes_Finais/main}
+\include{Anexos/orcamento}
+
+\bibliographystyle{plain}
+\nocite{*}
+\bibliography{bibliografia}
+
+\end{document}
