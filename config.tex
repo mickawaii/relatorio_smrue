@@ -2,6 +2,8 @@
 
 \usepackage{changepage}
 \usepackage[brazilian]{babel}
+\usepackage[fixlanguage]{babelbib}
+\selectbiblanguage{portuguese}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{amsmath}
@@ -20,7 +22,7 @@
 \usepackage{color}
 \usepackage{nomencl}
 \usepackage{fontspec}
-
+\usepackage{titlesec}
 \definecolor{lightgray}{rgb}{0.95,0.95,0.95}
 \linespread{1.25}
 \newcommand{\mychapter}[1]{\chapter{#1}\thispagestyle{empty}}
@@ -30,6 +32,8 @@
 \renewcommand\lstlistlistingname{Lista de Códigos}
 \titleformat{\subsubsection}
   {\normalfont\scshape}{\thesection}{1em}{}
+
+  
 \captionsetup[lstlisting]{font={small,tt}}
 
 \lstset{%
