@@ -23,4 +23,5 @@
 *.mtc1
 *.nlo
 *.out
+*.ps
 *.synctex.gz
