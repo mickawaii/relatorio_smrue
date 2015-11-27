@@ -1,35 +1,37 @@
-\input{config.tex}
-\makenomenclature
+\input{config}
+% \makenomenclature
 \begin{document}
-\include{rosto}
-\include{capa_interna}
+\frenchspacing 
+\imprimircapa
+\imprimirfolhaderosto*
+
+% \include{rosto}
+% \include{capa_interna}
 \include{ficha_catalografica}
 \include{agradecimentos}
 
 \include{resumo}
 \include{abstract}
 
-\frontmatter
-\addcontentsline{toc}{chapter}{Sumário}   
-\tableofcontents
+\pdfbookmark[0]{\listfigurename}{lof}
+\listoffigures*
+\cleardoublepage
 
-\cleardoublepage 
-\addcontentsline{toc}{chapter}{Lista de Figuras}  
-\listoffigures  
+\pdfbookmark[0]{\listtablename}{lot}
+\listoftables*
+\cleardoublepage
 
-\cleardoublepage 
-\addcontentsline{toc}{chapter}{Lista de Tabelas} 
-\listoftables  
-
-\cleardoublepage 
 \addcontentsline{toc}{chapter}{Lista de Codigos}
 \lstlistoflistings
+\cleardoublepage 
 
-\include{symbols.tex}
+\pdfbookmark[0]{\contentsname}{toc}
+\tableofcontents*
+\cleardoublepage
 
-\mainmatter
+\textual
 
-\pagestyle{headings}
+% \pagestyle{headings}
 
 \include{1-introducao/1-introducao}
 \include{2-aspectos_conceituais/1-conceitos}
@@ -40,8 +42,15 @@
 \include{7-Consideracoes_Finais/main}
 \include{Anexos/orcamento}
 
+\postextual
+
 \bibliographystyle{plain}
 \nocite{*}
 \bibliography{bibliografia}
+
+\include{apendices}
+\include{anexos}
+
+\printindex
 
 \end{document}
