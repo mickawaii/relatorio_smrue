@@ -17,16 +17,18 @@
 % ---
 % Pacotes básicos 
 % ---
+\usepackage{uarial}
 \usepackage{lmodern}
 \usepackage{lastpage}			% Usado pela Ficha catalográfica
 \usepackage{indentfirst}		% Indenta o primeiro parágrafo de cada seção.
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
+\usepackage{pdfpages} 			% Usado para incluir ficha catalográfica
 \usepackage[brazilian,hyperpageref]{backref}	 % Paginas com as citações na bibl
 \usepackage[alf]{abntex2cite}	% Citações padrão ABNT
 \usepackage{microtype} 			% para melhorias de justificação
 
-% \usepackage[fixlanguage]{babelbib}
+\usepackage[fixlanguage]{babelbib}
 \usepackage{amsmath}
 \usepackage[colorinlistoftodos]{todonotes}
 \usepackage{tabularx}
@@ -38,9 +40,9 @@
 \usepackage{comment}
 \usepackage{caption}
 \usepackage{color}
-%\usepackage{nomencl}
-%\usepackage{fontspec}
-%\usepackage{titlesec}
+\usepackage{nomencl}
+\usepackage{fontspec}
+\usepackage{titlesec}
 \definecolor{lightgray}{rgb}{0.95,0.95,0.95}
 \linespread{1.25}
 
@@ -116,6 +118,9 @@
 
 % O tamanho do parágrafo é dado por:
 \setlength{\parindent}{1.3cm}
+
+% fonte arial
+\setmainfont{Arial}
 
 % Controle do espaçamento entre um parágrafo e outro:
 \setlength{\parskip}{0.2cm}  % tente também \onelineskip
