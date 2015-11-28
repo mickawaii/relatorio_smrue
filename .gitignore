@@ -1,4 +1,5 @@
 *.aux
+*.brf
 *.glo
 *.idx
 *.log
@@ -22,4 +23,5 @@
 *.mtc1
 *.nlo
 *.out
+*.ps
 *.synctex.gz
