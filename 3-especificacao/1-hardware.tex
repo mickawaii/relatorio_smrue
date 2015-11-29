@@ -29,12 +29,22 @@ Os componentes do coordenador são:
 \subsection{Circuitos}
 \subsubsection{Verificador de Tensão}
 
-No circuito de cada módulo de sensor, são feitas detecções da voltagem (110V ou 220V) para cálculos de potência. O circuito da Figura 3.3 foi simulado no PSpice para esse propósito, com componentes com parâmetros não finais, para uma análise lógica do bloco. O objetivo do circuito da figura dois é indicar se a tensão na tomada é 220V ou 110V, retornando 5V ou 0V, respectivamente.
+No circuito de cada módulo de sensor, são feitas detecções da voltagem (110V ou 220V) para cálculos de potência.  O objetivo do circuito da figura \ref{fig:voltage-circuit} é indicar se a tensão na tomada é 220V ou 110V, retornando 5V ou 0V, respectivamente.
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=1\textwidth]{figuras/voltage-circuit.png}
-\caption{\label{fig:voltage-circuit} Diagrama de blocos do circuito que verifica a tensão}
+\includegraphics[width=9cm,keepaspectratio]{figuras/voltage-circuit.jpg}
+\caption{\label{fig:voltage-circuit} Circuito verificador de tensão}
+\end{figure}
+
+\subsubsection{Medidor de Corrente}
+
+Ainda no módulo sensor, é necessário obter as medidas do valor eficaz da corrente. O sensor não-invasivo produz uma tensão alternada na saída, e antes da coleta de dados pelo arduino é preciso obter um valor significativo, que não ultrapasse 2.5V. Para isso foi utilizado o circuito da figura \ref{fig:sensor-circuit}.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=9cm,keepaspectratio]{figuras/current-circuit.jpg}
+\caption{\label{fig:sensor-circuit} Circuito medidor de corrente}
 \end{figure}
 %
 \subsection{Peças}
@@ -60,7 +70,7 @@ Esse sensor de corrente consegue medir a corrente que passa por um fio de modo n
 \caption{\label{fig:raspberry pi} Raspberry pi 2 modelo B}
 \end{figure}
 
-A Raspberry Pi 2 Modelo B (figura 3.4) é o computador utilizado no sistema para receber os dados enviados pelos módulos sensores, tratá-los e enviar para o aplicativo. Foi escolhido o Raspberry Pi 2 - Model B por ser mais veloz, por possuir mais entradas USB e ser de alta disponibilidade no mercado, por um preço razoável. O kit inclui a fonte, um cartão microSD de 8GB e um adaptador Wifi USB.
+A Raspberry Pi 2 Modelo B (figura \ref{fig:raspberry pi}) é o computador utilizado no sistema para receber os dados enviados pelos módulos sensores, tratá-los e enviar para o aplicativo. Foi escolhido o Raspberry Pi 2 - Model B por ser mais veloz, por possuir mais entradas USB e ser de alta disponibilidade no mercado, por um preço razoável. O kit inclui a fonte, um cartão microSD de 8GB e um adaptador Wifi USB.
 
 \begin{itemize}
 \item{A 900MHz quad-core ARM Cortex-A7 CPU}
