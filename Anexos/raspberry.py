@@ -21,11 +21,10 @@ def readConsumption():
   while True:
     try:
       response = xbee.wait_read_frame()
-      #sendDataToWeb(response)
       output_file.write("Options\n")
       output_file.write(str(response['options'].encode("hex")$
       output_file.write("Src_addrs"+"\n")
-      output_file.write(str(response['source_addr'].encode("h$
+      output_file.write(str(response['source_addr'].encode("h$")
       output_file.write("Src_addrs_long"+"\n")
       output_file.write(str(response['source_addr_long'].enco$
       output_file.write(str(response)+"\n")
