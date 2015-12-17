@@ -7,7 +7,7 @@ O módulo sensor vai ser responsável por medir e transmitir as informações ne
 Os componentes físicos do módulo sensor são:
 
 \begin{itemize}
-\item Circuito Verificador de Voltagem
+\item Circuito Verificador de tensão
 \item Sensor de Corrente (Non-invasive AC Current Sensor)
 \item Arduino Uno - R3
 \item XBee Shield
@@ -29,7 +29,7 @@ Os componentes do coordenador são:
 \subsection{Circuitos}
 \subsubsection{Verificador de Tensão}
 
-No circuito de cada módulo de sensor, são feitas detecções da voltagem (110V ou 220V) para cálculos de potência.  O objetivo do circuito da figura \ref{fig:voltage-circuit} é indicar se a tensão na tomada é 220V ou 110V, retornando 5V ou 0V, respectivamente.
+No circuito de cada módulo de sensor, são feitas detecções da tensão (127V ou 220V) para cálculos de potência.  O objetivo do circuito da figura \ref{fig:voltage-circuit} é indicar se a tensão na tomada é 220V ou 127V. A saída do circuito é usada como um valor analógico, que dependendo da tensão de entrada resultará em faixas diferentes para as diferentes tensões.
 
 \begin{figure}[H]
 \centering
@@ -56,7 +56,7 @@ Ainda no módulo sensor, é necessário obter as medidas do valor eficaz da corr
 \end{center}
 \end{figure}
 
-Esse sensor de corrente consegue medir a corrente que passa por um fio de modo não-invasivo. O sensor funciona como um indutor respondendo a um campo magnético formado em volta do fio condutor. Este, em particular, suporta até 30A, e necessita de um resistor de saída para obter a medida desejada em voltagem.
+Esse sensor de corrente consegue medir a corrente que passa por um fio de modo não-invasivo. O sensor funciona como um transformador respondendo a um campo magnético formado em volta do fio condutor. Este, em particular, suporta até 30A de entrada, e necessita de um resistor de saída para obter a medida desejada em tensão.
 
 \begin{itemize}
 \item{Corrente suportada: 30A}
@@ -88,11 +88,11 @@ A Raspberry Pi 2 Modelo B (figura \ref{fig:raspberry pi}) é o computador utiliz
 \caption{\label{fig:arduino uno} Arduino UNO R3}
 \end{figure}
 
-Arduino é uma placa programável open-source . No projeto em questão é utilizado como o microcontrolador, que receberá os dados do sensor, fará um tratamento e terá o envio programado desses para o coordenador. Pelo Arduino ser programável e possuir uma interface muito amigável, simplifica essa ponte entre a coleta de dados e a transmissão. E sua alta disponibilidade no mercado , assim como o raspberry, facilita sua obtenção.
+Arduino é uma placa programável open-source . No projeto em questão esse componente receberá os dados do sensor, fará um tratamento e terá o envio programado desses para o coordenador. Pelo Arduino ser programável e possuir uma interface muito amigável, simplifica essa ponte entre a coleta de dados e a transmissão. E sua alta disponibilidade no mercado , assim como o raspberry, facilita sua obtenção.
 
 \begin{itemize}
 \item{microcontrolador ATmega328}
-\item{Voltagem de entrada - 7-12V}
+\item{tensão de entrada - 7-12V}
 \item{14 Pinos Digital I/O (6 PWM de saída)}
 \item{6 Inputs Analógicos}
 \item{32k de memória Flash}
@@ -129,7 +129,7 @@ Algumas outras especificações são:
 \end{center}
 \end{figure}
 
-É um módulo com porta USB que faz a conexão do módulo XBee a um computador. Isso é necessário para ter acesso aos pinos de comunicação serial e de programação. Ele possui um conversor USB-serial, que traduz os dados entre o computador e o XBee. Possui um botão de reset e um regulador de voltagem para suprir a voltagem necessária para XBee. Além disso possui 4 leds para debug: RX, TX, RSSI e indicador de energia. No projeto, este módulo é utilizado para fazer as configurações iniciais de todos os XBees e para conectar o XBee coordenador ao Raspberry Pi. Apesar de não ser um dispositivo essencial, este facilita muito nas tarefas citadas,  principalmente por lidar com a alimentação de 3,3V do XBee.
+É um módulo com porta USB que faz a conexão do módulo XBee a um computador. Isso é necessário para ter acesso aos pinos de comunicação serial e de programação. Ele possui um conversor serial, que traduz os dados entre o computador e o XBee. Possui um botão de reset e um regulador de tensão para suprir a tensão necessária para XBee. Além disso possui 4 leds para debug: RX, TX, RSSI e indicador de energia. No projeto, este módulo é utilizado para fazer as configurações iniciais de todos os XBees e para conectar o XBee coordenador ao Raspberry Pi. Apesar de não ser um dispositivo essencial, este facilita muito nas tarefas citadas,  principalmente por lidar com a alimentação de 3,3V do XBee.
 
 \subsubsection{XBee Shield}
 \begin{figure}[H]

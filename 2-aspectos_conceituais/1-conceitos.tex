@@ -1,9 +1,9 @@
 \chapter{Aspectos Conceituais}
 \label{Cap:conceitos}
 
-As técnicas de monitoramento e sensoriamento podem ser usados para as mais diversas funções e implementadas de diversas maneiras. Nesse trabalho, são usadas técnicas, arquiteturas e tecnologias para monitorar o consumo de energia elétrica em um ambiente web monitorada por uma rede de sensores na qual cada sensor da rede transmite seus dados a um componente central que se comunica com essa aplicação em nuvem  \cite{low_cost_wireless_sensor_network_SMF_master_thesis} .
+As técnicas de monitoramento e sensoriamento podem ser usados para as mais diversas funções e implementadas de diversas maneiras. Nesse trabalho, são usadas técnicas, arquiteturas e tecnologias para monitorar o consumo de energia elétrica em um ambiente residencial por uma rede de sensores na qual cada sensor da rede transmite seus dados a um componente central que se comunica com uma aplicação em nuvem  \cite{low_cost_wireless_sensor_network_SMF_master_thesis}.
 
-Serão abordados vários conceitos vistos em aula. Um deles engloba o universo dos protocolos e componentes de uma rede sem fio. Isso envolve o estudo do protocolo que será utilizado nesse projeto, que é o ZigBee. Junto a isso são estudados a montagem de circuitos de sensores associados a microcontroladores e a captação dos dados dos sensores por uma central.
+São abordados vários conceitos vistos em aula. Um deles engloba o universo dos protocolos e componentes de uma rede sem fio. Isso envolve o estudo do protocolo que será utilizado nesse projeto, que é o ZigBee, devido ao seu grande uso na área o que implica em uma grande fonte de informações sobre este\cite{xbee_book}\cite{sensor_network_book}\cite{low_cost_wireless_sensor_network_SMF_master_thesis}. Junto a isso são estudados a montagem de circuitos de sensores associados a microcontroladores e a captação dos dados dos sensores por uma central.
 
 Além disso é estudado o desenvolvimento de aplicações para Web e arquitetura de sistemas.
 
@@ -24,7 +24,7 @@ A arquitetura de software utilizada é a MVC, composta pelas camadas Model, View
 \caption{\label{fig:mvc} Arquitetura MVC}
 \end{figure}
 
-\textbf{Model:} A camada Model representa a primeira camada de interação com qualquer banco de dados que possa estar sendo usado na aplicação. Ela é responsável por obter, processar, validar dados do banco.
+\textbf{Model:} A camada Model representa a primeira camada de interação com qualquer banco de dados que possa estar sendo usado na aplicação. Ela é responsável por obter, processar, validar dados do banco de dados.
 
 \textbf{View:} A view é responsável por usar as informações disponibilizadas para produzir qualquer interface de apresentação que a aplicação pode necessitar.
 
@@ -39,7 +39,7 @@ Wireless Sensor Network, também conhecido como WSN, é um termo genérico que d
 
 \section{Padrão ZigBee e o XBee}
 \label{Sec:ZigBee_XBee}
- O padrão ZigBee e o dispositivo XBee possuem muitas características configuráveis e que podem servir a várias aplicações\cite{xbee_book}, porém duas delas são de maior interesse para o trabalho: o baixo consumo de energia e os modos de operação. O XBee pode ser configurado para operar em um dos dois modos: AT ou API. No modo AT há apenas o envio de dados ponto-a-ponto na rede, porém no modo API é possível agir na rede durante sua operação como mudanças de configuração de nós, broadcast, confirmação de entrega de pacotes e identificação do endereço dos dados recebidos, o que dá ao sistema um maior controle do todo \cite{xbee_documentation}
+ O padrão ZigBee e o dispositivo XBee possuem muitas características configuráveis e que podem servir a várias aplicações\cite{xbee_book}, porém duas delas são de maior interesse para o trabalho: o baixo consumo de energia e os modos de operação. O XBee pode ser configurado para operar em um dos dois modos: AT ou API. No modo AT há apenas o envio de dados ponto-a-ponto na rede, porém, no modo API, é possível agir na rede durante sua operação com mudanças de configuração de nós, broadcast, confirmação de entrega de pacotes e identificação do endereço dos dados recebidos, o que dá ao sistema um maior controle do todo \cite{xbee_documentation}
  
  
 \section{Topologias de Rede}
@@ -55,13 +55,12 @@ fonte: \url{http://ftp1.digi.com/support/documentation/html/90001399/90001399_A/
  
  A rede ZigBee é composta por nós que podem ser de três tipos:
  \begin{itemize}
-\item{Coordenador}: Nó destino (final) de todos os outros nós. Concentra os dados de todos nós. Todas as redes possuem exatamente um nó desse tipo. Não possui a capacidade de dormir e, portanto, não deveria ficar em um dispositivo a bateria limitada. Pode se comunicar com os outros dois tipos de nós. Também não possuem a capacidade de dormir, logo não podem ser energizados com uma bateria limitada. Normalmente são usados para extender a área de uma rede;
-\item{Roteador}: Funciona apenas como uma ponte intermediária entre os endpoints e o coordenador. Pode se comunicar com todos os outros tipos de nós;
+\item{Coordenador}: Nó destino (final) de todos os outros nós, concentrando os dados de todos os nós. Todas as redes possuem apenas um nó desse tipo e como esse tipo de nó não possui a capacidade de dormir ele não deveria ficar em um dispositivo com uma bateria limitada.
+\item{Roteador}: Funciona apenas como uma ponte intermediária entre os endpoints e o coordenador, podendo se comunicar com todos os outros tipos de nós, mas também não possuem a capacidade de dormir, logo não podem ser energizados com uma bateria limitada. Normalmente são usados para estender a área de uma rede, aumentando o alcance sensoreada da rede como um todo.
 \item{Dispositivos finais}: Nós que são as pontas da rede e que normalmente estão ligados aos sensores. Esses tem a capacidade de dormir e conservar energia enquanto não transmitem e só não conseguem se comunicar com outros nós do mesmo tipo diretamente;
 
-Dado essas especificações e limitações, as redes formadas por esses componentes podem ser de de três tipos \cite{xbee_book}: estrela, árvore ou mesh. Na estrela os dispositivos finais conversam diretamente com o coordenador, na rede mesh os dispositivos finais estão intermediádos por uma malha de roteadores que se organizam para encontrar o melhor caminho de roteadores de um dispositivo final até o coordenador e a árvore é um subcaso da rede mesh onde devido a bloqueios físicos ou distâncias entre os roteadores, a rede acaba por se tornar uma árvore ou um grafo onde o caminho de um dispositivo final até o coordenador praticamente não possui alternativas.
+Dadas essas especificações e limitações, as redes formadas por esses componentes podem ser de de três tipos \cite{xbee_book}: estrela, árvore ou mesh. Na estrela os dispositivos finais conversam diretamente com o coordenador, na rede mesh os dispositivos finais estão intermediados por uma malha de roteadores que se organizam para encontrar o melhor caminho de roteadores de um dispositivo final até o coordenador e a árvore é um subcaso da rede mesh onde, devido a bloqueios físicos ou distâncias entre os roteadores, a rede acaba por se tornar uma árvore ou um grafo onde o caminho de um dispositivo final até o coordenador praticamente não possui alternativas.
 
-Devido ao tamanho do projeto, não se justificava usar uma topologia muito complexa, uma vez que a rede teria no máximo quatro nós. Logo, nesse trabalho, é usado uma topologia em estrela.
 \end{itemize}
 %\section{Cloud Computing}
 %\label{Sec:cloud_computing}
