@@ -42,11 +42,11 @@ As configurações utilizadas foram:
 
 \subsection{Raspberry: Sistema Operacional}
 
-Raspberry Pi é um computador, como tal é possível usá-lo sobre um sistema operacional. O sistema operacional usado é o Raspian, baseado no Debian customizado para rodar no raspberry pi. Apesar de teoricamente não ser necessário o raspberry usar um sistema operacional, facilita muito o desenvolvimento tal equipamento conter uma interface amigável para seu uso.
+Raspberry Pi é um computador, como tal é possível usá-lo com um sistema operacional. O sistema operacional usado é o Raspian, baseado no Debian customizado para rodar no raspberry pi. Apesar de teoricamente não ser necessário o raspberry usar um sistema operacional, facilita muito o desenvolvimento tal equipamento conter uma interface amigável para seu uso.
 
 \subsection{Raspberry: Adaptador Wifi}
 
-Após o sistema Raspian ser instalado no cartão de memória, foi necessário configurar o adaptador Wifi. O modelo usado é o TP-Link TL-WN723N.
+Após o sistema Raspian ser instalado no cartão de memória, foi necessário configurar o adaptador Wifi (figura \ref{fig:wifi-adapter}). O modelo usado é o TP-Link TL-WN723N.
 
 \begin{figure}[H]
 \centering
@@ -86,9 +86,11 @@ Para testar a comunicação entre o Módulo Coordenador (figura \ref{fig:teste-i
 \caption{\label{fig:raspberry-arduino-1} Teste de comunicação Raspberry e Arduino}
 \end{figure}
 
+Após esse teste, foi feito um pequeno teste para observar o que ocorre com multiplos módulos sensores no sistema. Logo, o teste acima foi realizado com dois módulos com frequências diferentes de envio para garantir que não ocorre colisão.
+
 \subsection{Verificador de tensão}
 
-Para verificar a tensão foi usado um transformador para rebaixar a tensão da tomada. Na imagem é possível observar uma tomada de 110V sendo rebaixada para 7,2 V.
+Para verificar a tensão foi usado um transformador para rebaixar a tensão da tomada. Na imagem é possível observar uma tomada de 127V sendo rebaixada para 7,2 V.
 
 \begin{figure}[H]
 \centering
@@ -96,25 +98,27 @@ Para verificar a tensão foi usado um transformador para rebaixar a tensão da t
 \caption{\label{fig:sensor-tensao} Teste do transformador}
 \end{figure}
 
-Em seguida a saída foi retificada com um retificador de onda completa e filtrada com um capacitor e dividida por divisão de tensão com resistores para que fosse possível diferenciar uma tensão de 220V e 110V no arduino para enviar ao raspberry.
+Em seguida a saída foi retificada com um retificador de onda completa e filtrada com um capacitor e dividida por divisão de tensão com resistores para que fosse possível diferenciar uma tensão de 220V e 127V no arduino para enviar ao raspberry.
 
 A figura \ref{fig:teste-medicao-voltagem} mostra a montagem para tal e a figura \ref{fig:teste-medicao-voltagem-osc} mostra a saída no osciloscópio.
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=7cm,keepaspectratio]{figuras/teste-medicao-voltagem.jpg} 
-\caption{\label{fig:teste-medicao-voltagem} Teste de medição de voltagem} 
+\caption{\label{fig:teste-medicao-voltagem} Teste de medição de tensão} 
 \end{figure}
 
-Em seguida a saída retificada e dividida foi posta como entrada para um pino de leitura analógica do Arduino para a medição, para 110V e em seguida, 220V. A saída resultante no terminal serial do arduino \ref{fig:teste-medicao-voltagem-osc} foi a seguinte
+Em seguida a saída retificada e dividida foi posta como entrada para um pino de leitura analógica do Arduino para a medição, para 127V e em seguida, 220V. A saída resultante no terminal serial do arduino \ref{fig:teste-medicao-voltagem-osc} foi a seguinte
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=7cm,keepaspectratio]{figuras/teste-medicao-voltagem-osc.jpg} 
-\caption{\label{fig:teste-medicao-voltagem-osc} Teste de medição de voltagem com arduino - saída do osciloscópio}
+\caption{\label{fig:teste-medicao-voltagem-osc} Teste de medição de tensão com arduino - saída do osciloscópio}
 \end{figure}
 
-Para o sensor de corrente, dado que a saída do sensor é alternada, foi necessário fazer um pequeno circuito para que as informações coletadas estivessem em uma faixa legível ao arduíno. Para isso, foi colocado uma resistência entre as saídas do sensor, resistência essa que deveria, em 30A (corrente máxima do sensor), resultar em uma voltagem máxima de 2,5V para então adicionar um offset de 2,5V, possibilitando amostragens em todos os pontos da onda. Como apenas o valor de pico é relevante para calcular a potência aparente.
+\subsection{Sensor de corrente}
+
+Para o sensor de corrente, dado que a saída do sensor é alternada, foi necessário fazer um pequeno circuito para que as informações coletadas estivessem em uma faixa legível ao arduíno. Para isso, foi colocado uma resistência entre as saídas do sensor, resistência essa que deveria, em 30A (corrente máxima do sensor), resultar em uma tensão máxima de 2,5V para então adicionar um offset de 2,5V, possibilitando amostragens em todos os pontos da onda. Como apenas o valor de pico é relevante para calcular a potência aparente.
 No caso, a resistência utilizada foi de 150 omhs. 
 
 Já no arduino, para fazer a leitura, não era possível apenas ler diretamente o valor da entrada analógica, pois estávamos interessados no valor eficaz da corrente. Por isso foi utilizado da raiz da média dos quadrados (tradução livre de RMS - root mean square), fazendo várias leituras sucessivas, assim como o nome do método diz, faz-se a raiz da média dos quadrados das leituras para obter o valor eficaz.
@@ -129,15 +133,17 @@ Como se pode ver nos testes, apesar da corrente lida no amperímetro ser 9,3A ef
 \caption{\label{fig:teste-amperimetro} Medição com amperímetro}
 \end{figure}
 
+\lstinputlisting[language=C++, caption=Leitura da corrente, label={lst:Leitura da corrente}]{Anexos/voltage_and_current.ino}
+
 \begin{figure}[H]
 \centering
 \includegraphics[width=10cm,keepaspectratio]{figuras/ferro-passar.png} 
-\caption{\label{fig:teste-medicao-corrente-voltagem} Teste de medição da corrente e voltagem}
+\caption{\label{fig:teste-medicao-corrente-voltagem} Teste de medição da corrente e tensão}
 \end{figure}
 
 \subsection{Integrando as partes}
 
-Após os testes anteriores de comunicação entre o módulo sensor, módulo coordenador e a medição de corrente e voltagem, o conjunto foi testado. O código \ref{lst:arduino-code} foi carregado no arduino para a coleta dos dados de corrente e voltagem e o envio destes para o módulo coordenador.
+Após os testes anteriores de comunicação entre o módulo sensor, módulo coordenador e a medição de corrente e tensão, o conjunto foi testado. O código \ref{lst:arduino-code} foi carregado no arduino para a coleta dos dados de corrente e tensão e o envio destes para o módulo coordenador.
 
 \lstinputlisting[language=C, caption=arduino.c, label={lst:arduino-code}]{Anexos/arduino.c}
 
