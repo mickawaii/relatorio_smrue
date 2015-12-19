@@ -1,0 +1,134 @@
+\section{Software}
+\label{Sec:software}
+
+\subsection{Classes e atributos}
+
+A seguir estão descritas as classes do sistema e seus respectivos atributos. As classes implementadas estão representadas pelo diagrama de classes (figura \ref{fig:diagrama-classes}).
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=10cm,height=10cm,keepaspectratio]{figuras/diagrama_classes.png}
+\caption{\label{fig:diagrama-classes} Diagrama de Classes}
+\end{center}
+\end{figure}
+
+\subsubsection{Equipment}
+\begin{description}
+	\item[Classe:] Equipment
+	\item[Descrição:] um equipamento monitorado
+	\item[Atributos:]
+\end{description} 
+\begin{enumerate}
+  \item id (integer): Identificador do equipamento
+  \item name (String): Nome do equipamento
+  \item description (Text): descrição do equipamento 
+  \item nominal\_power (float): potência do equipamento descrita no manual do equipamento 
+  \item measurement\_unit (String): unidade do valor dado em nominal\_power
+  \item approximated\_consumption (float): consumo aproximado do equipamento dado pelo fabricante 
+\end{enumerate}
+%
+\subsubsection{Sensor}
+\begin{description}
+	\item[Classe:] Sensor
+	\item[Descrição:] um sensor do sistema
+	\item[Atributos:]
+\end{description} 
+\begin{enumerate}
+	\item id (integer): identificador do sensor dentro do software.
+	\item name (String): nome dado pelo usuário para o sensor
+	\item code (String): identificador do sensor entre outros sensores. Informação configurada no próprio módulo do sensor.
+	\item equipment\_id (integer): equipamento a qual está associado
+\end{enumerate}
+%
+\subsubsection{Consumption}
+\begin{description}
+	\item[Classe:] Consumption
+	\item[Descrição:] Representa uma medida feita de um equipamento em um dado instante
+	\item[Atributos:]
+\end{description} 
+\begin{enumerate}
+	\item id (integer): identificador do consumo
+	\item moment (DateTime): a data e a hora de quando foi feita a medida
+	\item current (float): corrente no momento da medida em amperes
+	\item voltage (float): voltagem do tomada do equipamento. 220V ou 127V
+\end{enumerate}
+%
+\subsubsection{User}
+\begin{description}
+	\item[Classe:] User
+	\item[Descrição:] Representa um usuário do sistema
+	\item[Atributos:]
+\end{description} 
+\begin{enumerate}
+	\item id (integer): identificador do usuário
+	\item name (String):  Nome do usuário
+	\item username (String): Nome de usuário usado para efetuar o login
+	\item password (String com Criptografia): Senha do usuário usada para efetuar o login
+    \item income\_type (String): O tipo de renda do usuário, Residencial ou Residencial de baixa renda, definida pela AES eletropaulo.
+\end{enumerate}
+%
+\subsubsection{Goal}
+\begin{description}
+	\item[Classe:] Goal
+	\item[Descrição:] Representa uma meta de consumo por mês
+	\item[Atributos:]
+\end{description} 
+\begin{enumerate}
+	\item id (integer): identificador da meta
+	\item name (String):  Nome da meta
+	\item value\_in\_percent (float): Consumo pretendido em percentagem (em relação ao mês anterior)
+	\item yearmonth\_start (DateTime): Mês/Ano de início do período da meta
+    \item yearmonth\_end (DateTime): Mês/Ano de fim do período da meta
+\end{enumerate}
+%
+\subsubsection{AESRate}
+\begin{description}
+	\item[Classe:] AESRate
+	\item[Descrição:] Representa a taxa de conversão da AES eletropaulo de kilowatts hora para reais. Esses valores obtidos através da página de tarifas do site da AES Eletropaulo \cite{aes_site}
+	\item[Atributos:]
+\end{description} 
+\begin{enumerate}
+	\item id (integer): identificador da taxa de conversão
+	\item value (float): O valor da taxa de conversão no instante
+	\item date (DateTime): O instante que a taxa de conversão foi buscada
+	\item range\_start (float): O início da faixa que define a taxa de conversão
+    \item range\_end (float): O início da faixa que define a taxa de conversão
+\end{enumerate}
+
+No sistema é necessário cadastrar a entidade principal: os equipamentos eletrônicos monitorados, sendo prevista a possibilidade de que um sensor possa mudar de um equipamento para outro, sendo que tal mudança deve ser cadastrada no sistema pelo  usuário na tela de configurações, como mostrado na tela de configurações no diagrama de navegação (figura \ref{fig:diagrama-navegacao}).  Essa possibilidade de mudança da configuração dos sensores explica a relação do equipamento e as medidas de consumo: caso o usuário troque o sensor de equipamento ainda será possível visualizar dados anteriores de outros equipamentos já monitorados.
+
+Os sensores devem ser criados automaticamente pelo sistema uma vez que eles sejam colocados no sistema. Eles enviam um sinal inicial que informa seu identificador para que o sistema o cadastre. O usuário poderá, então, colocar um nome que preferir nesse sensor. Porém, como não há qualquer informação que o sistema pode indicar ao sistema em qual aparelho ou em que tipo de aparelho o sensor foi instalado, tal associação deve ser feita manualmente antes que os dados comecem a ser coletados.
+
+Adquiridas as medidas, é possível vizualizar esses dados em uma tabela de consumo na tela de consumo. Nessa tela, é possível construir o gráfico do consumo em função de vários períodos de tempo, no caso, o consumo por dia e por mês, assim como metas de consumo de energia dos equipamentos selecionados e previsões de consumo que serão calculadas a partir do consumo nominal dos equipamentos.
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=10cm,height=10cm,keepaspectratio]{figuras/diagrama_navegacao.png}
+\caption{\label{fig:diagrama-navegacao} Diagrama de Navegação}
+\end{center}
+\end{figure}
+%
+\subsection{Atores}
+\begin{description}
+	\item[usuário:] Como o sistema vai ser utilizado apenas pelo(s) responsável(is) pela residência, há apenas um tipo de usuário, que é o usuário comum
+    \item[módulo coordenador:] É o componente de hardware que enviará informações de consumo para o sistema
+\end{description}
+\input{4-especificacao/casos_de_uso}
+%
+
+\subsection{Tecnologia}
+
+\subsubsection{Django e Python}
+
+Para o aplicativo será utilizado o framework Django, devido ao uso da linguagem python, que é uma linguagem limpa, de fácil utilização e com ampla disponibilidade de bibliotecas gratuitas e de fóruns para auxílio na implementação.
+Há também algumas outras razões para escolher tais ferramentas:
+
+Uma das vantagens do python nesse caso é uma pequena vantagem de compatibilidade, uma vez que o ``pi'' em ``raspberry pi'' vem de ``python'', já que o hardware foi construído com a intenção do aprendizado de programação com python \cite{raspberry_pi_site} (apesar da possibilidade de usar outras linguagens). Outra vantagem provinha do conhecimento prévio dos integrantes do grupo e do framework que reduzia muito o tempo de desenvolvimento. E por último, a possibilidade de, se necessário, rodar o servidor da aplicação no próprio raspberry sem a necessidade de acrescentar muitos outros módulos externos, uma vez que no raspberry python já é uma linguagem nativa, sendo necessário instalar apenas as dependências do django.
+
+\subsubsection{Heroku}
+
+Heroku é uma plataforma em nuvem que fornece múltiplos serviços para dar suporte a uma aplicação web. Desenvolvedores web podem subir aplicações em linguagens como Node, Ruby, Java, PHP, Python, Go, Scala, ou Clojure, e o Heroku a manterá no ar sem a necessidade da intervenção do desenvolvedor. Esse serviço, diferente de opções de outros serviços de nuvem como o da amazon, também se encarrega em configurar o ambiente de execução da aplicação, o que agiliza o processo de colocar a aplicação em produção.
+
+Heroku utiliza os chamados dynos, que representam máquinas/computadores que executam comandos. Cada tipo de dyno possui a sua limitação de memória RAM, fração de CPU, se é dedicada ou não e a velocidade do processamento, que refletem nos custos, porém, existe a opção gratuita que permite colocar uma aplicação no ar com um processamento suficiente para atender tráfegos pequenos. Nos planos pagos, o sistema é escalável (pode-se alterar o limite do número de processos executando na máquina do sistema, memória RAM, entre outros) para atender a momentos de tráfego mais intenso.\cite{heroku}
+
+Durante a fase de teste do sistema em questão é utilizado o plano gratuito do Heroku.

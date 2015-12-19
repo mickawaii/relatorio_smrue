@@ -1,0 +1,54 @@
+\chapter{Especificação do Projeto}
+\label{Cap:especificacao}
+
+O sistema é composto por duas partes: hardware, ou seja, os componentes como microcontroladores, sensores, entre outros; e software, identificado como o aplicativo de interface entre o usuário e os dados coletados.
+
+O sistema está brevemente descrito através da figura \ref{fig:esqueminha} e a disposição dos componentes através do diagrama de implantação da figura \ref{fig:diagrama_implantacao}:
+
+A parte de hardware está separada em dois módulos principais: o módulo de sensoriamento e um módulo coordenador e a parte de software se resume à parte da aplicação web na nuvem.
+\input{4-especificacao/3-premissas}
+\input{4-especificacao/1-hardware}
+
+\section{Escopo}
+
+Coletados os dados, resta mostrar informações úteis ao usuário. Com o consumo de corrente e a voltagem da tomada, é possível calcular a potência e alguns outros dados interessantes para o usuário. O aplicativo desenvolvido nesse trabalho é responsável por esse tratamento e a visualização dos dados coletados pelos sensores. As principais metas são as seguintes:
+
+\begin{itemize}
+	\item{informar ao usuário sobre o consumo de energia por equipamento em sua residência}
+	\item{auxiliar o usuário a tomar decisões para diminuir o consumo de energia}
+  \item{permitir o acesso às informações de consumo tanto localmente quanto remotamente}
+\end{itemize}
+%
+\section{Funções do Sistema}
+
+\begin{description}
+	\item[Gerenciar contas:] O usuário poderá fazer cadastro/alteração de conta e autenticação.
+	\item[Gerenciar equipamentos:] O usuário poderá fazer criação, edição e remoção de equipamentos, os quais serão monitorados pelo sistema
+	\item[Gerenciar sensores:] Os módulos sensores são auto-detectados, e o usuário poderá editar ou removê-los
+	\item[Gerenciar metas:] O usuário poderá criar, editar e remover metas mensais.
+	\item[Gerenciar consumo:] O módulo coordenador enviará consumos para o sistema estes serão cadastrados. O usuário poderá visualizar os consumos através de gráficos. Além disso o usuário poderá importar ou exportar dados de consumo
+	\item[Atualizar taxas da AES:] O usuário poderá atualizar as taxas de energia utilizadas para cálculo do custo do consumo
+	\item[Configurar sistema:] O usuário poderá associar os sensores aos equipamentos e escolher um tipo de renda
+\end{description}
+
+\section{Requisitos não Funcionais}
+
+\begin{itemize}
+	\item{independência do usuário em relação ao técnico do sistema para instalar o sistema em sua residência}
+	\item{sistema de fácil manuseio pelo usuário morador da residência}
+	\item{característica portátil para os componentes físicos do sistema}
+\end{itemize}
+
+\input{4-especificacao/2-software}
+
+\begin{figure}
+\centering
+\includegraphics[width=1\textwidth]{figuras/esqueminha.png}
+\caption{\label{fig:esqueminha} Esquema do Projeto}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[width=1\textwidth]{figuras/diagrama_implantacao.png}
+\caption{\label{fig:diagrama_implantacao} Diagrama de implantação}
+\end{figure}
