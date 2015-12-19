@@ -24,7 +24,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage[brazilian,hyperpageref]{backref}	 % Paginas com as citações na bibl
-\usepackage[alf]{abntex2cite}	% Citações padrão ABNT
+\usepackage[num]{abntex2cite}	% Citações padrão ABNT
 \usepackage{microtype} 			% para melhorias de justificação
 
 \usepackage[fixlanguage]{babelbib}
@@ -91,6 +91,8 @@
 % alterando o aspecto da cor azul
 \definecolor{blue}{RGB}{41,5,195}
 
+%\bibliographystyle{abnt-num}
+
 % informações do PDF
 \makeatletter
 \hypersetup{
@@ -136,5 +138,6 @@
   basicstyle=\footnotesize\ttfamily,
   breaklines=true, 
   tabsize=2,
-  captionpos=b
+  captionpos=b,
+  title=Código
 }
