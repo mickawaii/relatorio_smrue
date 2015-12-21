@@ -16,7 +16,7 @@ Além disso é estudado o desenvolvimento de aplicações para Web e arquitetura
 \section{Arquitetura MVC }
 \label{Sec:MVC}
 
-A arquitetura de software utilizada é a MVC, composta pelas camadas Model, View e Controller (figura \ref{fig:mvc})
+A arquitetura MVC é a mais utilizada nos dias atuais para a concepção de aplicativos web, uma vez que ela permite a implementação de um sistema de melhor manutenção ao separar responsabilidades nas camadas de Model, View e Controller \cite{MVC_design} (figura \ref{fig:mvc})
 
 \begin{figure}
 \centering
@@ -38,6 +38,8 @@ Wireless Sensor Network, também conhecido como WSN, é um termo genérico que d
 
 \section{Padrão ZigBee e o XBee}
 \label{Sec:ZigBee_XBee}
+ Para realizar a comunicação sem fio entre os módulos coordenador e sensor, foi necessária a escolha de um padrão para fazer esse intermédio de mensagens. Para realizar tal escolha foram levados em consideração principalmente a eficiência energética que o padrão tem, confiabilidade e escalabilidade. Apesar de existirem opções melhores em certos aspectos, como o Bluetooth Low Energy na área de consumo de energia \cite{BLE_MHABAL}, o ZigBee possui um certo balanceamento das características procuradas, sendo uma solução mais genérica \cite{CG_JP_survey}. Com a existência do XBee, um dispositivo que implementa o ZigBee, é mais interessante adotar tal padrão, uma vez que esse dispositivo facilita a produção do protótipo final.
+
  O padrão ZigBee e o dispositivo XBee possuem muitas características configuráveis e que podem servir a várias aplicações\cite{xbee_book}, porém duas delas são de maior interesse para o trabalho: o baixo consumo de energia e os modos de operação. O XBee pode ser configurado para operar em um dos dois modos: AT ou API. No modo AT há apenas o envio de dados ponto-a-ponto na rede, porém, no modo API, é possível agir na rede durante sua operação com mudanças de configuração de nós, broadcast, confirmação de entrega de pacotes e identificação do endereço dos dados recebidos, o que dá ao sistema um maior controle do todo \cite{xbee_documentation}
  
 \section{Topologias de Rede}

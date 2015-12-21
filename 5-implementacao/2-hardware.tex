@@ -2,6 +2,7 @@
 \label{Sec:5-hardware}
 
 \subsection{XBee: configuração}
+Para o projeto em questão, foi usada uma topologia em estrela para a comunicação entre módulos, pois, no caso, existiam poucos componentes no sistema.
 O tutorial usado para configurar a rede dos dispositivos XBee encontra-se em \cite{xbee_setup}.
 
 As configurações utilizadas foram: 
@@ -56,7 +57,7 @@ Após o sistema Raspian ser instalado no cartão de memória, foi necessário co
 
 \subsection{Raspberry x Arduino: comunicação}
 
-Para testar a comunicação entre o Módulo Coordenador (figura \ref{fig:teste-inicial-raspberry}) e o módulo sensor (figura \ref{fig:teste-inicial-arduino}), foi montado o esquema representado na figura \ref{fig:teste-inicial-all} e foram executados dois programas. O programa \ref{lst:teste-inicial-arduino} foi utilizado no módulo sensor para transmitir o valor "123123" por um datagrama a ser enviado pela rede do XBee. Já o programa \ref{lst:teste-inicial-raspberry} foi utilizado no Módulo Coordenador para receber o datagrama ZigBee e imprimir no console do Raspberry.
+Para testar a comunicação entre o Módulo Coordenador (figura \ref{fig:teste-inicial-raspberry}) e o módulo sensor (figura \ref{fig:teste-inicial-arduino}), foi montado o esquema representado na figura \ref{fig:teste-inicial-all} e foram executados dois programas: listing \ref{lst:teste-inicial-arduino} e listing \ref{lst:teste-inicial-raspberry}.
 
 \begin{figure}[H]
 \centering
@@ -76,9 +77,13 @@ Para testar a comunicação entre o Módulo Coordenador (figura \ref{fig:teste-i
 \caption{\label{fig:teste-inicial-all} Teste de comunicação: Montagem}
 \end{figure}
 
-\lstinputlisting[language=C, caption=teste-inicial-arduino.c, label={lst:teste-inicial-arduino}]{Anexos/teste-inicial-arduino.c}
+ O programa listing \ref{lst:teste-inicial-arduino} foi utilizado no módulo sensor para transmitir o valor "123123" por um datagrama a ser enviado pela rede do XBee. Já o programa listing \ref{lst:teste-inicial-raspberry} foi utilizado no Módulo Coordenador para receber o datagrama ZigBee e imprimir no console do Raspberry.
 
-\lstinputlisting[language=Python, caption=teste-inicial-raspberry.py, label={lst:teste-inicial-raspberry}]{Anexos/teste-inicial-raspberry.py}
+\lstinputlisting[frame=single, language=C, caption=teste-inicial-arduino.c, label={lst:teste-inicial-arduino}]{Anexos/teste-inicial-arduino.c}
+
+\lstinputlisting[frame=single, language=Python, caption=teste-inicial-raspberry.py, label={lst:teste-inicial-raspberry}]{Anexos/teste-inicial-raspberry.py}
+
+Finalmente, na figura \ref{fig:raspberry-arduino-1} é possível observar o resultado do teste: os datagramas que chegavam no raspberry do arduino. No caso, as informações de interesse são ``source\_addr'' que identifica a origem da mensagem e ``rf\_data'', que identifica o valor da mensagem em sí.
 
 \begin{figure}[H]
 \centering
@@ -86,7 +91,7 @@ Para testar a comunicação entre o Módulo Coordenador (figura \ref{fig:teste-i
 \caption{\label{fig:raspberry-arduino-1} Teste de comunicação Raspberry e Arduino}
 \end{figure}
 
-Após esse teste, foi feito um pequeno teste para observar o que ocorre com multiplos módulos sensores no sistema. Logo, o teste acima foi realizado com dois módulos com frequências diferentes de envio para garantir que não ocorre colisão.
+Após esse teste, foi feito um pequeno teste para observar o que ocorre com multiplos módulos sensores no sistema. Logo, o teste acima foi realizado com dois módulos com frequências diferentes de envio para garantir que não ocorre colisão. Os resultados foram idênticos, com a diferença de que as mensagens chegavam de dois nós diferentes, ou seja, chegavam pacotes com ``source\_addr'' diferentes.
 
 \subsection{Verificador de tensão}
 
@@ -133,7 +138,11 @@ Como se pode ver nos testes, apesar da corrente lida no amperímetro ser 9,3A ef
 \caption{\label{fig:teste-amperimetro} Medição com amperímetro}
 \end{figure}
 
-\lstinputlisting[language=C++, caption=Leitura da corrente, label={lst:Leitura da corrente}]{Anexos/voltage_and_current.c}
+O código \ref{lst:Leitura da corrente} é o código usado no arduino para calcular as medidas.
+
+\lstinputlisting[frame=single, language=C++, caption=Leitura da corrente, label={lst:Leitura da corrente}]{Anexos/voltage_and_current.ino}
+
+Na figura \ref{fig:teste-medicao-corrente-voltagem} aparecem as medidas coletadas no arduino e mostradas no monitor serial da IDE do arduino.
 
 \begin{figure}[H]
 \centering
@@ -143,12 +152,12 @@ Como se pode ver nos testes, apesar da corrente lida no amperímetro ser 9,3A ef
 
 \subsection{Integrando as partes}
 
-Após os testes anteriores de comunicação entre o módulo sensor, módulo coordenador e a medição de corrente e tensão, o conjunto foi testado. O código \ref{lst:arduino-code} foi carregado no arduino para a coleta dos dados de corrente e tensão e o envio destes para o módulo coordenador.
+Após os testes anteriores de comunicação entre o módulo sensor, módulo coordenador e a medição de corrente e tensão, o conjunto foi testado. O código listing \ref{lst:arduino-code} foi carregado no arduino para a coleta dos dados de corrente e tensão e o envio destes para o módulo coordenador.
 
-\lstinputlisting[language=C, caption=arduino.c, label={lst:arduino-code}]{Anexos/arduino.c}
+\lstinputlisting[frame=single, language=C, caption=arduino.c, label={lst:arduino-code}]{Anexos/arduino.c}
 
-O módulo coordenador foi configurado para executar o seguinte programa em python (código \ref{lst:raspberry-code}), logo após ligar o raspberry, para a inicialização da interface entre os sensores e a aplicação web. Uma vez com o programa em execução, o módulo coordenador estará pronto para escutar as requisições de envio de dados coletados dos módulos sensores. 
+O módulo coordenador foi configurado para executar o seguinte programa em python (código listing \ref{lst:raspberry-code}), logo após ligar o raspberry, para a inicialização da interface entre os sensores e a aplicação web. Uma vez com o programa em execução, o módulo coordenador estará pronto para escutar as requisições de envio de dados coletados dos módulos sensores. 
 
-\lstinputlisting[language=Python, caption=raspberry.py, label={lst:raspberry-code}]{Anexos/raspberry.py}
+\lstinputlisting[frame=single, language=Python, caption=raspberry.py, label={lst:raspberry-code}]{Anexos/raspberry.py}
 
 A idéia dos códigos é que o arduino envie seu endereço MAC para diferenciá-lo na rede e uma string formatada como um JSON para que esse seja convertido no raspberry e as informações sejam extraídas.
