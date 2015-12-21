@@ -57,7 +57,7 @@ Após o sistema Raspian ser instalado no cartão de memória, foi necessário co
 
 \subsection{Raspberry x Arduino: comunicação}
 
-Para testar a comunicação entre o Módulo Coordenador (figura \ref{fig:teste-inicial-raspberry}) e o módulo sensor (figura \ref{fig:teste-inicial-arduino}), foi montado o esquema representado na figura \ref{fig:teste-inicial-all} e foram executados dois programas: listing \ref{lst:teste-inicial-arduino} e listing \ref{lst:teste-inicial-raspberry}.
+Para testar a comunicação entre o Módulo Coordenador (figura \ref{fig:teste-inicial-raspberry}) e o módulo sensor (figura \ref{fig:teste-inicial-arduino}), foi montado o esquema representado na figura \ref{fig:teste-inicial-all} e foram executados dois programas: código \ref{lst:teste-inicial-arduino} e código \ref{lst:teste-inicial-raspberry}.
 
 \begin{figure}[H]
 \centering
@@ -77,7 +77,7 @@ Para testar a comunicação entre o Módulo Coordenador (figura \ref{fig:teste-i
 \caption{\label{fig:teste-inicial-all} Teste de comunicação: Montagem}
 \end{figure}
 
- O programa listing \ref{lst:teste-inicial-arduino} foi utilizado no módulo sensor para transmitir o valor "123123" por um datagrama a ser enviado pela rede do XBee. Já o programa listing \ref{lst:teste-inicial-raspberry} foi utilizado no Módulo Coordenador para receber o datagrama ZigBee e imprimir no console do Raspberry.
+ O código \ref{lst:teste-inicial-arduino} foi utilizado no módulo sensor para transmitir o valor "123123" por um datagrama a ser enviado pela rede do XBee. Já o código \ref{lst:teste-inicial-raspberry} foi utilizado no Módulo Coordenador para receber o datagrama ZigBee e imprimir no console do Raspberry.
 
 \lstinputlisting[frame=single, language=C, caption=teste-inicial-arduino.c, label={lst:teste-inicial-arduino}]{Anexos/teste-inicial-arduino.c}
 
@@ -152,11 +152,11 @@ Na figura \ref{fig:teste-medicao-corrente-voltagem} aparecem as medidas coletada
 
 \subsection{Integrando as partes}
 
-Após os testes anteriores de comunicação entre o módulo sensor, módulo coordenador e a medição de corrente e tensão, o conjunto foi testado. O código listing \ref{lst:arduino-code} foi carregado no arduino para a coleta dos dados de corrente e tensão e o envio destes para o módulo coordenador.
+Após os testes anteriores de comunicação entre o módulo sensor, módulo coordenador e a medição de corrente e tensão, o conjunto foi testado. O código \ref{lst:arduino-code} foi carregado no arduino para a coleta dos dados de corrente e tensão e o envio destes para o módulo coordenador.
 
 \lstinputlisting[frame=single, language=C, caption=arduino.c, label={lst:arduino-code}]{Anexos/arduino.c}
 
-O módulo coordenador foi configurado para executar o seguinte programa em python (código listing \ref{lst:raspberry-code}), logo após ligar o raspberry, para a inicialização da interface entre os sensores e a aplicação web. Uma vez com o programa em execução, o módulo coordenador estará pronto para escutar as requisições de envio de dados coletados dos módulos sensores. 
+O módulo coordenador foi configurado para executar o seguinte programa em python (código \ref{lst:raspberry-code}), logo após ligar o raspberry, para a inicialização da interface entre os sensores e a aplicação web. Uma vez com o programa em execução, o módulo coordenador estará pronto para escutar as requisições de envio de dados coletados dos módulos sensores. 
 
 \lstinputlisting[frame=single, language=Python, caption=raspberry.py, label={lst:raspberry-code}]{Anexos/raspberry.py}
 
