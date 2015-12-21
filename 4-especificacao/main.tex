@@ -3,9 +3,21 @@
 
 O sistema é composto por duas partes: hardware, ou seja, os componentes como microcontroladores, sensores, entre outros; e software, identificado como o aplicativo de interface entre o usuário e os dados coletados.
 
-O sistema está brevemente descrito através da figura \ref{fig:esqueminha} e a disposição dos componentes através do diagrama de implantação da figura \ref{fig:diagrama_implantacao}:
+O visão geral do sistema está representada na figura \ref{fig:esqueminha} e o diagrama de implantação está representado na figura \ref{fig:diagrama_implantacao}:
 
-A parte de hardware está separada em dois módulos principais: o módulo de sensoriamento e um módulo coordenador e a parte de software se resume à parte da aplicação web na nuvem.
+\begin{figure}[H]
+\centering
+\includegraphics[width=1\textwidth]{figuras/esqueminha.png}
+\caption{\label{fig:esqueminha} Esquema do Projeto}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=1\textwidth]{figuras/diagrama_implantacao.png}
+\caption{\label{fig:diagrama_implantacao} Diagrama de implantação}
+\end{figure}
+
+A parte de hardware está separada em dois módulos principais: o Módulo Sensor e um Módulo Coordenador e a parte de software se resume à parte da aplicação Web na nuvem.
 \input{4-especificacao/3-premissas}
 \input{4-especificacao/1-hardware}
 
@@ -18,7 +30,6 @@ Coletados os dados, resta mostrar informações úteis ao usuário. Com o consum
 	\item{auxiliar o usuário a tomar decisões para diminuir o consumo de energia}
   \item{permitir o acesso às informações de consumo tanto localmente quanto remotamente}
 \end{itemize}
-%
 
 \section{Requisitos não Funcionais}
 
@@ -28,15 +39,3 @@ Coletados os dados, resta mostrar informações úteis ao usuário. Com o consum
 \end{itemize}
 
 \input{4-especificacao/2-software}
-
-\begin{figure}
-\centering
-\includegraphics[width=1\textwidth]{figuras/esqueminha.png}
-\caption{\label{fig:esqueminha} Esquema do Projeto}
-\end{figure}
-
-\begin{figure}
-\centering
-\includegraphics[width=1\textwidth]{figuras/diagrama_implantacao.png}
-\caption{\label{fig:diagrama_implantacao} Diagrama de implantação}
-\end{figure}

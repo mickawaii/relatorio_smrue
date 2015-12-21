@@ -1,8 +1,8 @@
 \section{Hardware}
 \label{Sec:hardware}
-\subsection{Módulo sensor}
+\subsection{Módulo Sensor}
 
-O módulo sensor vai ser responsável por medir e transmitir as informações necessárias para calcular o consumo de energia do equipamento acoplado.
+O módulo sensor é o responsável por medir e transmitir ao módulo coordenador as informações necessárias para calcular o consumo de energia do equipamento acoplado.
 
 Os componentes físicos do módulo sensor são:
 
@@ -14,9 +14,9 @@ Os componentes físicos do módulo sensor são:
 \item XBee 2mW PCB Antenna - Series 2
 \end{itemize}
 %
-\subsection{Coordenador}
+\subsection{Módulo Coordenador}
 
-O módulo coordenador vai ser responsável por fazer requisições para os módulos sensores, tratar os dados de consumo e enviar ao aplicativo na nuvem.
+O módulo coordenador é o responsável por receber mensagens dos módulos sensores, tratá-los e enviar os dados de consumo para a aplicação em nuvem.
 
 Os componentes do coordenador são:
 
@@ -49,6 +49,9 @@ Ainda no módulo sensor, é necessário obter as medidas do valor eficaz da corr
 %
 \subsection{Peças}
 \subsubsection{Sensor de Corrente Não-invasivo AC}
+
+Esse sensor de corrente (figura \ref{fig:sensor}) consegue medir a corrente que passa por um fio de modo não-invasivo. O sensor é um transformador de corrente respondendo ao campo magnético formado em volta do fio condutor. Este, em particular, suporta até 30A de entrada, e necessita de um resistor de saída para obter a medida desejada em tensão.
+
 \begin{figure}[H]
 \begin{center}
 \includegraphics[width=5cm,height=5cm,keepaspectratio]{figuras/sensor.jpg}
@@ -56,8 +59,7 @@ Ainda no módulo sensor, é necessário obter as medidas do valor eficaz da corr
 \end{center}
 \end{figure}
 
-Esse sensor de corrente consegue medir a corrente que passa por um fio de modo não-invasivo. O sensor é um transformador de corrente respondendo ao campo magnético formado em volta do fio condutor. Este, em particular, suporta até 30A de entrada, e necessita de um resistor de saída para obter a medida desejada em tensão.
-
+Especificações técnicas:
 \begin{itemize}
 \item{Corrente suportada: 30A}
 \item{Temperatura de operação: -40$^{\circ}$C até 65 $^{\circ}$C}
@@ -65,13 +67,15 @@ Esse sensor de corrente consegue medir a corrente que passa por um fio de modo n
 \end{itemize}
 %
 \subsubsection{Raspberry Pi 2 modelo B}
+
+A Raspberry Pi 2 Modelo B (figura \ref{fig:raspberry pi}) é o computador utilizado no sistema para receber os dados enviados pelos módulos sensores, tratá-los e enviar para o aplicativo. Foi escolhido o Raspberry Pi por facilidade de projeto. Foi escolhido o modelo 2 - Model B por ser mais veloz, por possuir mais entradas USB e por ter alta disponibilidade no mercado, por um preço razoável. O kit inclui a fonte, um cartão microSD de 8GB e um adaptador Wifi USB.
+
 \begin{figure}[H]
 \includegraphics[width=1\textwidth]{figuras/raspberry_pi.png}
 \caption{\label{fig:raspberry pi} Raspberry pi 2 modelo B}
 \end{figure}
 
-A Raspberry Pi 2 Modelo B (figura \ref{fig:raspberry pi}) é o computador utilizado no sistema para receber os dados enviados pelos módulos sensores, tratá-los e enviar para o aplicativo. Foi escolhido o Raspberry Pi 2 - Model B por ser mais veloz, por possuir mais entradas USB e ser de alta disponibilidade no mercado, por um preço razoável. O kit inclui a fonte, um cartão microSD de 8GB e um adaptador Wifi USB.
-
+Especificações técnicas:
 \begin{itemize}
 \item{A 900MHz quad-core ARM Cortex-A7 CPU}
 \item{1GB RAM}
@@ -83,13 +87,15 @@ A Raspberry Pi 2 Modelo B (figura \ref{fig:raspberry pi}) é o computador utiliz
 \end{itemize}
 %
 \subsubsection{Arduino UNO}
+
+Arduino (figura \ref{fig:arduino uno}) é uma placa programável open-source. No projeto em questão esse componente receberá os dados do sensor, fará um tratamento e terá o envio programado desses para o coordenador. Pelo Arduino ser programável e possuir uma interface muito amigável, simplifica essa ponte entre a coleta de dados e a transmissão. E sua alta disponibilidade no mercado, assim como o raspberry, facilita sua obtenção.
+
 \begin{figure}[H]
 \includegraphics[width=1\textwidth]{figuras/arduino_uno.png}
 \caption{\label{fig:arduino uno} Arduino UNO R3}
 \end{figure}
 
-Arduino é uma placa programável open-source . No projeto em questão esse componente receberá os dados do sensor, fará um tratamento e terá o envio programado desses para o coordenador. Pelo Arduino ser programável e possuir uma interface muito amigável, simplifica essa ponte entre a coleta de dados e a transmissão. E sua alta disponibilidade no mercado , assim como o raspberry, facilita sua obtenção.
-
+Especificações técnicas:
 \begin{itemize}
 \item{microcontrolador ATmega328}
 \item{tensão de entrada - 7-12V}
@@ -100,6 +106,9 @@ Arduino é uma placa programável open-source . No projeto em questão esse comp
 \end{itemize}
 %
 \subsubsection{XBee}
+
+XBee(figura \ref{fig:xbee}) é um módulo que permite uma comunicação simples e confiável entre microcontroladores, computadores, sistemas através de uma porta serial com um consumo menor de energia. Pode ser utilizado em redes ponto-a-ponto e multi-ponto. Foram escolhidos módulos da série 2 por serem configuráveis.
+
 \begin{figure}[H]
 \begin{center}
 \includegraphics[width=5cm,height=5cm,keepaspectratio]{figuras/xbee_serie2.png}
@@ -107,9 +116,7 @@ Arduino é uma placa programável open-source . No projeto em questão esse comp
 \end{center}
 \end{figure}
 
-É um módulo que permite uma comunicação simples e confiável entre microcontroladores, computadores, sistemas através de uma porta serial com um consumo menor de energia. Pode ser utilizado em redes ponto-a-ponto e multi-ponto. Foram escolhidos módulos da série 2 por serem configuráveis.
-Algumas outras especificações são:
-
+Especificações técnicas:
 \begin{itemize}
 \item{entradas de 3.3V @ 40mA}
 \item{transmissão de dados máxima de 250kbps}
@@ -122,6 +129,9 @@ Algumas outras especificações são:
 \end{itemize}
 %
 \subsubsection{XBee Explorer Dongle}
+
+XBee Explorer Dongle (figura \ref{fig:xbee explorer dongle}) é um módulo com porta USB que faz a conexão do módulo XBee a um computador. Isso é necessário para ter acesso aos pinos de comunicação serial e de programação. Ele possui um conversor serial, que traduz os dados entre o computador e o XBee. Possui um botão de reset e um regulador de tensão para suprir a tensão necessária para XBee. Além disso possui 4 leds para debug: RX, TX, RSSI e indicador de energia. No projeto, este módulo é utilizado para fazer as configurações iniciais de todos os XBees e para conectar o XBee coordenador ao Raspberry Pi. Apesar de não ser um dispositivo essencial, este facilita muito nas tarefas citadas,  principalmente por lidar com a alimentação de 3,3V do XBee.
+
 \begin{figure}[H]
 \begin{center}
 \includegraphics[width=5cm,height=5cm,keepaspectratio]{figuras/xbee_explorer_dongle.png}
@@ -129,9 +139,10 @@ Algumas outras especificações são:
 \end{center}
 \end{figure}
 
-É um módulo com porta USB que faz a conexão do módulo XBee a um computador. Isso é necessário para ter acesso aos pinos de comunicação serial e de programação. Ele possui um conversor serial, que traduz os dados entre o computador e o XBee. Possui um botão de reset e um regulador de tensão para suprir a tensão necessária para XBee. Além disso possui 4 leds para debug: RX, TX, RSSI e indicador de energia. No projeto, este módulo é utilizado para fazer as configurações iniciais de todos os XBees e para conectar o XBee coordenador ao Raspberry Pi. Apesar de não ser um dispositivo essencial, este facilita muito nas tarefas citadas,  principalmente por lidar com a alimentação de 3,3V do XBee.
-
 \subsubsection{XBee Shield}
+
+XBee Shield (figura\ref{fig:xbee shield}) é um módulo que faz a conexão entre um módulo XBee e um Arduino. Ele possui opções para escolher se a conexão vai ser nos pinos UART ou qualquer outros pinos digitais do Arduino. A alimentação de 5V vinda do Arduino é regulada para 3.3V VDC antes de chegar no módulo XBee. O XBee Shield inclui LEDs para indicar a utilização dos pinos DIN, DOUT, RSSI e DIO5 do XBee. É usado um módulo XBee Shield para cada par XBee + Arduino.
+
 \begin{figure}[H]
 \begin{center}
 \includegraphics[width=5cm,height=5cm,keepaspectratio]{figuras/xbee_shield.png}
@@ -139,16 +150,14 @@ Algumas outras especificações são:
 \end{center}
 \end{figure}
 
-É um módulo que faz a conexão entre um módulo XBee e um Arduino. Ele possui opções para escolher se a conexão vai ser nos pinos UART ou qualquer outros pinos digitais do Arduino. A alimentação de 5V vinda do Arduino é regulada para 3.3V VDC antes de chegar no módulo XBee. O XBee Shield inclui LEDs para indicar a utilização dos pinos DIN, DOUT, RSSI e DIO5 do XBee. É usado um módulo XBee Shield para cada par XBee + Arduino.
-
 \subsubsection{Arduino Stackable Header Kit - R3}
+
+Headers (figura \ref{fig:xbee shield headers}) são conectores usados para encaixar o módulo XBee Shield no Arduino Uno R3. Estão inclusos 4 headers, 2 x 8 pinos, 1 x 10 pinos e 1 x 6 pinos, suficientes para 1 módulo XBee Shield. Como há 2 sensores no projeto, serão usados 2 kits, com um adicional de reserva.
+
 \begin{figure}[H]
 \begin{center}
 \includegraphics[width=5cm,height=5cm,keepaspectratio]{figuras/headers.png}
 \caption{\label{fig:xbee shield headers} Headers usados no XBee shield}
 \end{center}
 \end{figure}
-
-São conectores usados para encaixar o módulo XBee Shield no Arduino Uno R3. Estão inclusos 4 headers, 2 x 8 pinos, 1 x 10 pinos e 1 x 6 pinos, suficientes para 1 módulo XBee Shield. Como há 2 sensores no projeto, serão usados 2 kits, com um adicional de reserva.
-
 
