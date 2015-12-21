@@ -27,7 +27,7 @@ Vários casos de uso especificados anteriormente possuem uma certa interdependê
 
 \subsection{Models e Controllers}
 
-Antes de implementar os casos de uso, as classes iniciais foram adaptadas para os Models do Django e a organização das classes no framework está representada na figura \ref{fig:diagrama-models}. Essas classes são responsáveis por acessar, criar, alterar ou remover dados dos equipamentos, sensores, taxas da AES, metas e usuários do banco de dados. Nos diagramas de classes simplificados a seguir foram representadas apenas as classes criadas para o projeto e as classes às quais estão diretamente relacionadas, ou seja, as demais classes do Django estão omitidas. A diferença observada em relação ao primeiro diagrama de classes (figura \ref{fig:diagrama-classes}) foi o fato de haver uma classe pré-existente User. A opção mais adequada para esse caso é criar um Model diferente (chamada Profile nesse caso) que tenha uma Foreign Key para um User. A partir de então, um usuário pode possuir um atributo adicional - income\_type - bastando criar um objeto da classe Profile e colocar uma Foreign Key para User. Essa é a opção mais adequada, uma vez que não é necessário criar uma nova classe de usuário, reescrevendo todos os atributos e métodos que o Django já oferece.
+Antes de implementar os casos de uso, as classes iniciais foram adaptadas para os Models do Django e a organização das classes no framework está representada na figura \ref{fig:diagrama-models}. Essas classes são responsáveis por acessar, criar, alterar ou remover dados dos equipamentos, sensores, taxas da AES, metas e usuários do banco de dados. Nos diagramas de classes simplificados a seguir foram representadas apenas as classes criadas para o projeto e as classes às quais estão diretamente relacionadas, ou seja, as demais classes do Django estão omitidas. Ainda nos diagramas, há classe pai com o mesmo nome da classe filho, apesar de serem classes diferentes, isso é possível pois estão localizados em arquivos diferentes. A diferença observada em relação ao primeiro diagrama de classes (figura \ref{fig:diagrama-classes}) foi o fato de haver uma classe pré-existente User. A opção mais adequada para esse caso é criar um Model diferente (chamada Profile nesse caso) que tenha uma Foreign Key para um User. A partir de então, um usuário pode possuir um atributo adicional - income\_type - bastando criar um objeto da classe Profile e colocar uma Foreign Key para User. Essa é a opção mais adequada, uma vez que não é necessário criar uma nova classe de usuário, reescrevendo todos os atributos e métodos que o Django já oferece.
 
 \begin{figure}[H]
 \centering
@@ -37,10 +37,10 @@ Antes de implementar os casos de uso, as classes iniciais foram adaptadas para o
 
 No projeto em questão são utilizados Controllers Principais (figura \ref{fig:diagrama-cont-principal}):
 \begin{description}
-	\item[IndexView:] Exibe página principal sem usuário logado.
-	\item[HomeView:] Exibe página principal do usuário logado.
-	\item[LoginView:] Exibe formulário para login e realiza autenticação.
-	\item[LogoutView:] Encerra a sessão do usuário.
+	\item[IndexView:] Exibe página principal sem usuário logado. TemplateView é sua classe pai.
+	\item[HomeView:] Exibe página principal do usuário logado. TemplateView é sua classe pai.
+	\item[LoginView:] Exibe formulário para login e realiza autenticação. FormView é sua classe pai.
+	\item[LogoutView:] Encerra a sessão do usuário.  View é sua classe pai.
 \end{description} 
 
 \begin{figure}[H]
@@ -51,10 +51,10 @@ No projeto em questão são utilizados Controllers Principais (figura \ref{fig:d
 
 Os Controllers que lidam com os equipamentos estão representados na figura \ref{fig:diagrama-cont-equipment}. E os Controllers são:
 \begin{description}
-	\item[IndexView:] Exibe página de listagem dos equipamentos.
-	\item[CreateView:] Exibe página com formulário para criação de um equipamento, cria um equipamento, realiza redirecionamento após a criação.
-	\item[UpdateView:] Exibe página com formulário para edição de um equipamento, edita um equipamento, realiza redirecionamento após a edição.
-	\item[DeleteView:] Remove um equipamento.
+	\item[IndexView:] Exibe página de listagem dos equipamentos. ListView é sua classe pai.
+	\item[CreateView:] Exibe página com formulário para criação de um equipamento, cria um equipamento, realiza redirecionamento após a criação. CreateView é sua classe pai.
+	\item[UpdateView:] Exibe página com formulário para edição de um equipamento, edita um equipamento, realiza redirecionamento após a edição. UpdateView é sua classe pai.
+	\item[DeleteView:] Remove um equipamento. DeleteView é sua classe pai.
 \end{description} 
 
 \begin{figure}[H]
@@ -65,9 +65,9 @@ Os Controllers que lidam com os equipamentos estão representados na figura \ref
 
 Os Controllers que lidam com os sensores estão representados na figura \ref{fig:diagrama-cont-sensor}. E os Controllers são:
 \begin{description}
-	\item[IndexView:] Exibe página de listagem dos sensores.
-	\item[UpdateView:] Exibe página com formulário para edição de um sensor, edita um sensor, realiza redirecionamento após a edição.
-	\item[DeleteView:] Remove um sensor.
+	\item[IndexView:] Exibe página de listagem dos sensores. ListView é sua classe pai.
+	\item[UpdateView:] Exibe página com formulário para edição de um sensor, edita um sensor, realiza redirecionamento após a edição. UpdateView é sua classe pai.
+	\item[DeleteView:] Remove um sensor. DeleteView é sua classe pai.
 \end{description} 
 
 \begin{figure}[H]
@@ -78,7 +78,7 @@ Os Controllers que lidam com os sensores estão representados na figura \ref{fig
 
 Os Controllers que lidam com as taxas da AES estão representados na figura \ref{fig:diagrama-cont-aesrate}. E os Controllers são:
 \begin{description}
-	\item[IndexView:] Exibe página de listagem das taxas AES.
+	\item[IndexView:] Exibe página de listagem das taxas AES. ListView é sua classe pai.
 \end{description} 
 
 \begin{figure}[H]
@@ -89,14 +89,14 @@ Os Controllers que lidam com as taxas da AES estão representados na figura \ref
 
 Os Controllers que lidam com as configurações do sistema (e do usuário) estão representados na figura \ref{fig:diagrama-cont-configuration}. E os Controllers são:
 \begin{description}
-	\item[ConfigView:] Exibe página com formulário para configuração do sistema, configura o sistema.
-	\item[UserCreateView:] Exibe página com formulário para registro de um usuário, registra um usuário e realiza redirecionamento após registro.
-	\item[UserUpdateView:] Exibe página com formulário para alteração dos dados de um usuário, altera os dados do usuário e realiza redirecionamento após alteração dos dados.
-	\item[PasswordUpdateView:] Exibe página com formulário para edição de senha do usuário, edita a senha do usuário e redireciona após a alteração da senha.
-	\item[PasswordRecoverView:] Exibe página com formulário para recuperação de senha do usuário, manda e-mail de recuperação de senha.
-	\item[PasswordRecoverDoneView:] Redireciona depois do envio de e-mail para recuperação de senha.
-	\item[PasswordResetView:] Exibe página com formulário para reconfigurar a senha do usuário, reconfigura a senha do usuário.
-	\item[PasswordResetDoneView:] Redireciona depois da reconfiguração de senha do usuário.
+	\item[ConfigView:] Exibe página com formulário para configuração do sistema, configura o sistema. TemplateView é sua classe pai.
+	\item[UserCreateView:] Exibe página com formulário para registro de um usuário, registra um usuário e realiza redirecionamento após registro. CreateView é sua classe pai.
+	\item[UserUpdateView:] Exibe página com formulário para alteração dos dados de um usuário, altera os dados do usuário e realiza redirecionamento após alteração dos dados. FormView é sua classe pai.
+	\item[PasswordUpdateView:] Exibe página com formulário para edição de senha do usuário, edita a senha do usuário e redireciona após a alteração da senha. FormView é sua classe pai.
+	\item[PasswordRecoverView:] Exibe página com formulário para recuperação de senha do usuário, manda e-mail de recuperação de senha. FormView é sua classe pai.
+	\item[PasswordRecoverDoneView:] Redireciona depois do envio de e-mail para recuperação de senha. RedirectView é sua classe pai.
+	\item[PasswordResetView:] Exibe página com formulário para reconfigurar a senha do usuário, reconfigura a senha do usuário. FormView é sua classe pai.
+	\item[PasswordResetDoneView:] Redireciona depois da reconfiguração de senha do usuário. RedirectView é sua classe pai.
 \end{description} 
 
 \begin{figure}[H]
@@ -107,10 +107,10 @@ Os Controllers que lidam com as configurações do sistema (e do usuário) estã
 
 Os Controllers que lidam com as metas estão representados na figura \ref{fig:diagrama-cont-goal}. E os Controllers são:
 \begin{description}
-	\item[IndexView:] Exibir página de listagem das metas.
-	\item[CreateView:] Exibir página com formulário para criação de uma meta, cria uma meta, realiza redirecionamento após criar a meta.
-	\item[UpdateView:] Exibir página com formulário para edição de uma meta, edita a meta, realiza redirecionamento após editar a meta.
-	\item[DeleteView:] Remove uma meta.
+	\item[IndexView:] Exibir página de listagem das metas. ListView é sua classe pai.
+	\item[CreateView:] Exibir página com formulário para criação de uma meta, cria uma meta, realiza redirecionamento após criar a meta. CreateView é sua classe pai.
+	\item[UpdateView:] Exibir página com formulário para edição de uma meta, edita a meta, realiza redirecionamento após editar a meta. UpdateView é sua classe pai.
+	\item[DeleteView:] Remove uma meta. DeleteView é sua classe pai.
 \end{description} 
 
 \begin{figure}[H]
@@ -121,7 +121,7 @@ Os Controllers que lidam com as metas estão representados na figura \ref{fig:di
 
 Os Controllers que lidam com os consumos estão representados na figura \ref{fig:diagrama-cont-consumption}. E os Controllers são:
 \begin{description}
-	\item[GraphicView:] Exibe o gráfico de consumo
+	\item[GraphicView:] Exibe o gráfico de consumo. TemplateView é sua classe pai.
 \end{description} 
 
 \begin{figure}[H]

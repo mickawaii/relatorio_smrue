@@ -1,0 +1,106 @@
+\subsubsection{Equipment}
+\begin{description}
+  \item[Classe:] Equipment
+  \item[Descrição:] Representa um equipamento na aplicação. Os equipamentos são criados pelos usuários dentro do sistema. É necessário possuir um sensor associado para que o equipamento possa ser associado a um consumo.
+  \item[Atributos:] \hfill
+    \begin{enumerate}
+      \item id (integer): identificador do equipamento
+      \item name (String): nome do equipamento
+      \item description (Text): descrição do equipamento 
+      \item nominal\_power (float): potência nominal do equipamento 
+      \item measurement\_unit (String): unidade de medida utilizada em nominal\_power
+      \item approximated\_consumption (float): consumo aproximado do equipamento dado pelo fabricante 
+    \end{enumerate}
+  \item[Relacionamentos:] \hfill
+    \begin{enumerate}
+      \item um equipamento possui nenhum ou um sensor
+      \item um equipamento possui nenhum ou vários consumos
+      \item um equipamento possui nenhum ou várias metas
+    \end{enumerate}
+\end{description} 
+%
+\subsubsection{Sensor}
+\begin{description}
+  \item[Classe:] Sensor
+  \item[Descrição:] Representa um sensor na aplicação. Os sensores são criados automaticamente pelo sistema ao receber um consumo de um sensor não registrado. O usuário poderá, então, editar o nome do sensor. Porém, como não há dado que indique em qual aparelho o sensor foi instalado, tal associação deve ser feita através de configuração (Caso de uso Configurar sistema). Caso um sensor seja alocado de um equipamento para outro, os novos consumos passarão a pertencer ao segundo equipamento.
+  \item[Atributos:] \hfill
+    \begin{enumerate}
+      \item id (integer): identificador do sensor
+      \item name (String): nome dado pelo usuário para o sensor
+      \item code (String): identificador do sensor, enviada pelo módulo sensor (endereço MAC do XBee no módulo sensor)
+      \item equipment\_id (integer): equipamento ao qual está associado
+    \end{enumerate}
+  \item[Relacionamentos:] \hfill
+    \begin{enumerate}
+      \item um sensor pertence a um ou nenhum equipamento
+    \end{enumerate}
+\end{description} 
+%
+\subsubsection{Consumption}
+\begin{description}
+  \item[Classe:] Consumption
+  \item[Descrição:] Representa uma medida de consumo feita de um equipamento em um dado instante. Quando um consumo é enviado ao sistema, o valor da corrente, tensão e identificador do sensor são enviados. Caso o identificador do sensor não exista dentro do sistema, uma nova instância de sensor será criada. A partir do momento em que o sensor tiver um equipamento associado, consumos para aquele equipamento poderão ser criados. Caso um sensor seja alocado de um equipamento para outro, os consumos para o equipamento anterior vão continuar pertencendo ao mesmo, enquanto os novos consumos pertencerão ao segundo equipamento.
+  \item[Atributos:] \hfill
+    \begin{enumerate}
+      \item id (integer): identificador do consumo
+      \item equipment\_id (integer): identificador do equipamento
+      \item moment (DateTime): a data e a hora de quando foi feita a medida
+      \item current (float): corrente no momento da medida em amperes
+      \item voltage (float): tensão da tomada do equipamento. 220V ou 127V
+    \end{enumerate}
+  \item[Relacionamentos:] \hfill
+    \begin{enumerate}
+      \item um consumo pertence a um equipamento
+    \end{enumerate}
+\end{description} 
+%
+\subsubsection{User}
+\begin{description}
+  \item[Classe:] User
+  \item[Descrição:] Representa um usuário do sistema. 
+  \item[Atributos:] \hfill
+    \begin{enumerate}
+      \item id (integer): identificador do usuário
+      \item name (String):  nome do usuário
+      \item username (String): nome de usuário usado para efetuar o login
+      \item password (String encriptado): senha do usuário usada para efetuar o login
+        \item income\_type (String): o tipo de renda do usuário, Residencial ou Residencial de baixa renda, de acordo com a especificação da AES eletropaulo.
+    \end{enumerate}
+\end{description} 
+%
+\subsubsection{Goal}
+\begin{description}
+  \item[Classe:] Goal
+  \item[Descrição:] Representa uma meta de consumo para um mês. Ao cadastrar a meta, ela calcula um valor igual a percentagem (value\_in\_percent) do total de consumo para um equipamento no mês anterior. Ao ser traçado o gráfico do mês pertencente ao da meta para aquele equipamento, um gráfico com o valor da meta será exibido.
+  \item[Atributos:] \hfill
+    \begin{enumerate}
+      \item id (integer): identificador da meta
+      \item equipment\_id (integer): identificador do equipamento
+      \item name (String):  nome da meta
+      \item value\_in\_percent (float): consumo pretendido em percentagem (em relação ao mês anterior)
+      \item value\_absolute (float): consumo pretendido (em relação ao mês anterior)
+      \item yearmonth\_start (DateTime): início do período da meta
+        \item yearmonth\_end (DateTime): fim do período da meta
+    \end{enumerate}
+  \item[Relacionamentos:] \hfill
+    \begin{enumerate}
+      \item uma meta pertence a um equipamento
+    \end{enumerate}
+\end{description} 
+%
+\subsubsection{AESRate}
+\begin{description}
+  \item[Classe:] AESRate
+  \item[Descrição:] Representa a taxa de conversão da AES eletropaulo de kilowatts hora para reais. Esses valores são obtidos através da página de tarifas do site da AES Eletropaulo \cite{aes_site}. Caso o usuário queira visualizar o consumo em reais, o usuário deve escolher a opção de integrar o gráfico também (pois as tarifas são calculadas em função da energia consumida, e não em função potência consumida em dado instante). Em seguida, o sistema identifica qual taxa de conversão, dependendo da data do consumo (deve ser maior ou igual a valid\_date), tipo de renda (se é igual ao atributo name), faixa de consumo (o valor de consumo deve ser maior ou igual a range\_start e menor ou igual a range\_end). Identificada a taxa, o sistema multiplica o valor de cada ponto do gráfico com a soma de TE e TUSD da taxa para converter em reais.
+  \item[Atributos:] \hfill
+    \begin{enumerate}
+      \item id (integer): identificador da taxa de conversão
+      \item name (String): nome da taxa de conversão, o mesmo utilizado pela AES.
+      \item te (float): tarifa de energia
+      \item tusd (float): tarifa de uso do sistema de distribuição
+      \item date (DateTime): o instante que a taxa de conversão foi buscada
+      \item valid\_date (DateTime): data de início da validade das tarifas
+      \item range\_start (float): o início da faixa de consumo que define a taxa de conversão
+        \item range\_end (float): o fim da faixa de consumo que define a taxa de conversão
+    \end{enumerate}
+\end{description} 
