@@ -100,20 +100,20 @@ Para verificar a tensão foi usado um transformador para rebaixar a tensão da t
 
 Em seguida a saída foi retificada com um retificador de onda completa e filtrada com um capacitor e dividida por divisão de tensão com resistores para que fosse possível diferenciar uma tensão de 220V e 127V no arduino para enviar ao raspberry.
 
-A figura \ref{fig:teste-medicao-voltagem} mostra a montagem para tal e a figura \ref{fig:teste-medicao-voltagem-osc} mostra a saída no osciloscópio.
+A figura \ref{fig:teste-medicao-tensao} mostra a montagem para tal e a figura \ref{fig:teste-medicao-tensao-osc} mostra a saída no osciloscópio.
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=7cm,keepaspectratio]{figuras/teste-medicao-voltagem.jpg} 
-\caption{\label{fig:teste-medicao-voltagem} Teste de medição de tensão} 
+\includegraphics[width=7cm,keepaspectratio]{figuras/teste-medicao-tensao.jpg} 
+\caption{\label{fig:teste-medicao-tensao} Teste de medição de tensão} 
 \end{figure}
 
-Em seguida a saída retificada e dividida foi posta como entrada para um pino de leitura analógica do Arduino para a medição, para 127V e em seguida, 220V. A saída resultante no terminal serial do arduino \ref{fig:teste-medicao-voltagem-osc} foi a seguinte
+Em seguida a saída retificada e dividida foi posta como entrada para um pino de leitura analógica do Arduino para a medição, para 127V e em seguida, 220V. A saída resultante no terminal serial do arduino \ref{fig:teste-medicao-tensao-osc} foi a seguinte
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=7cm,keepaspectratio]{figuras/teste-medicao-voltagem-osc.jpg} 
-\caption{\label{fig:teste-medicao-voltagem-osc} Teste de medição de tensão com arduino - saída do osciloscópio}
+\includegraphics[width=7cm,keepaspectratio]{figuras/teste-medicao-tensao-osc.jpg} 
+\caption{\label{fig:teste-medicao-tensao-osc} Teste de medição de tensão com arduino - saída do osciloscópio}
 \end{figure}
 
 \subsection{Sensor de corrente}
@@ -125,7 +125,7 @@ Já no arduino, para fazer a leitura, não era possível apenas ler diretamente 
 
 Com o circuito de corrente pronto, foi possível fazer algumas leituras teste. No caso foi usado o ferro de passar para que fosse usada uma corrente mais alta. 
 
-Como se pode ver nos testes, apesar da corrente lida no amperímetro ser 9,3A eficazes (figura \ref{fig:teste-amperimetro}), as leituras no arduíno resultaram em valores ligeiramente menores entre 8,9 e 8,8A eficazes (figura \ref{fig:teste-medicao-corrente-voltagem}), resultando em um erro de aproximadamente 7\%, que é um erro relativamente alto se pensado em uma leitura de longo prazo.
+Como se pode ver nos testes, apesar da corrente lida no amperímetro ser 9,3A eficazes (figura \ref{fig:teste-amperimetro}), as leituras no arduíno resultaram em valores entre 8,9 e 8,8A eficazes (figura \ref{fig:teste-medicao-corrente-voltagem}), resultando em um erro de aproximadamente 7\%, que é um erro relativamente alto se pensado em uma leitura de longo prazo.
 
 \begin{figure}[H]
 \centering
@@ -133,7 +133,7 @@ Como se pode ver nos testes, apesar da corrente lida no amperímetro ser 9,3A ef
 \caption{\label{fig:teste-amperimetro} Medição com amperímetro}
 \end{figure}
 
-\lstinputlisting[language=C++, caption=Leitura da corrente, label={lst:Leitura da corrente}]{Anexos/voltage_and_current.ino}
+\lstinputlisting[language=C++, caption=Leitura da corrente, label={lst:Leitura da corrente}]{Anexos/voltage_and_current.c}
 
 \begin{figure}[H]
 \centering

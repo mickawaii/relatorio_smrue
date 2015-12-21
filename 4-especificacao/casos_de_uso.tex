@@ -1,7 +1,6 @@
 \subsection{Casos de uso}
-
-Os casos de uso do sistema estão listados na tabela \ref{tab:casos_de_uso}.
-
+As funções obtidas foram divididas em casos de uso, como mostra a tabela \ref{tab:casos_de_uso}.
+%
 \begin{table}
 \centering
 {\renewcommand{\arraystretch}{1.5}
@@ -41,13 +40,15 @@ Configurar sistema & Configurar sistema\\
 \end{table}
 %
 \subsection{Descrição dos casos de uso}
-
 A seguir são descritos os casos de uso do sistema. 
-
+%
 % ************************************************
 % 1 - GERENCIAR CONTA
 % ************************************************
-\subsubsection{Caso de Uso 1: Gerenciar conta}
+\subsubsection{Função 1: Gerenciar conta}
+
+O usuário pode fazer cadastro/alteração de conta e autenticação.
+
 \subsubsection{Caso de Uso 1.1: Fazer cadastro}
 \begin{description}
 	\item[Descrição:] inserção de um novo usuário comum no sistema
@@ -143,7 +144,9 @@ A seguir são descritos os casos de uso do sistema.
 % ************************************************
 % 2 - GERENCIAR EQUIPAMENTO
 % ************************************************
-\subsubsection{Caso de Uso 2: Gerenciar equipamentos}
+\subsubsection{Função 2: Gerenciar equipamentos}
+O usuário pode fazer a criação, edição e remoção de equipamentos.
+%
 \subsubsection{Caso de Uso 2.1: Criar equipamento}
 \begin{description}
 	\item[Descrição:] criar um novo equipamento
@@ -219,7 +222,9 @@ A seguir são descritos os casos de uso do sistema.
 % ************************************************
 % 3 - GERENCIAR SENSORES
 % ************************************************
-\subsubsection{Caso de Uso 3: Gerenciar sensores}
+\subsubsection{Função 3: Gerenciar sensores}
+Os módulos sensores são auto-detectados, e o usuário pode editá-los ou removê-los.
+%
 \subsubsection{Caso de Uso 3.1: Detectar sensor}
 \begin{description}
 	\item[Descrição:] detectar um sensor
@@ -292,7 +297,9 @@ A seguir são descritos os casos de uso do sistema.
 % ************************************************
 % 4 - GERENCIAR META
 % ************************************************
-\subsubsection{Caso de Uso 4: Gerenciar metas}
+\subsubsection{Função 4: Gerenciar metas}
+O usuário pode criar, editar e remover metas mensais.
+%
 \subsubsection{Caso de Uso 4.1: Criar meta}
 \begin{description}
 	\item[Descrição:] criar uma nova meta
@@ -368,7 +375,9 @@ A seguir são descritos os casos de uso do sistema.
 % ************************************************
 % 5 - GERENCIAR CONSUMO
 % ************************************************
-\subsubsection{Caso de Uso 5: Gerenciar consumos}
+\subsubsection{Função 5: Gerenciar consumos}
+O Módulo Coordenador envia consumos para o sistema. O usuário pode visualizar os consumos através de gráficos. Além disso o usuário pode importar ou exportar dados de consumo.
+%
 \subsubsection{Caso de Uso 5.1: Criar consumo}
 \begin{description}
 	\item[Descrição:] inserir consumos no sistema

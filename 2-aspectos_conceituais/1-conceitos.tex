@@ -40,7 +40,6 @@ Wireless Sensor Network, também conhecido como WSN, é um termo genérico que d
 \label{Sec:ZigBee_XBee}
  O padrão ZigBee e o dispositivo XBee possuem muitas características configuráveis e que podem servir a várias aplicações\cite{xbee_book}, porém duas delas são de maior interesse para o trabalho: o baixo consumo de energia e os modos de operação. O XBee pode ser configurado para operar em um dos dois modos: AT ou API. No modo AT há apenas o envio de dados ponto-a-ponto na rede, porém, no modo API, é possível agir na rede durante sua operação com mudanças de configuração de nós, broadcast, confirmação de entrega de pacotes e identificação do endereço dos dados recebidos, o que dá ao sistema um maior controle do todo \cite{xbee_documentation}
  
- 
 \section{Topologias de Rede}
 \label{Sec:Redes_topologias}
  Como os nós dos sensores formam uma rede, é necessário analisar as possibilidades de redes.  Como são usados XBees para formar essa rede de sensores, deve-se atentar aos tipos de rede possíveis \cite{xbee_book} \cite{xbee_documentation}.
@@ -61,5 +60,4 @@ fonte: \url{http://ftp1.digi.com/support/documentation/html/90001399/90001399_A/
 Dadas essas especificações e limitações, as redes formadas por esses componentes podem ser de de três tipos \cite{xbee_book}: estrela, árvore ou mesh. Na estrela os dispositivos finais conversam diretamente com o coordenador, na rede mesh os dispositivos finais estão intermediados por uma malha de roteadores que se organizam para encontrar o melhor caminho de roteadores de um dispositivo final até o coordenador e a árvore é um subcaso da rede mesh onde, devido a bloqueios físicos ou distâncias entre os roteadores, a rede acaba por se tornar uma árvore ou um grafo onde o caminho de um dispositivo final até o coordenador praticamente não possui alternativas.
 
 \end{itemize}
-%\section{Cloud Computing}
-%\label{Sec:cloud_computing}
+
