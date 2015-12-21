@@ -3,18 +3,12 @@
 
 O sistema é composto por duas partes: hardware, ou seja, os componentes como microcontroladores, sensores, entre outros; e software, identificado como o aplicativo de interface entre o usuário e os dados coletados.
 
-O visão geral do sistema está representada na figura \ref{fig:esqueminha} e o diagrama de implantação está representado na figura \ref{fig:diagrama_implantacao}:
+O visão geral do sistema está representada na figura \ref{fig:esqueminha}. A coleta de dados começa no equipamento, onde são conectados Módulos Sensores, um para cada equipamento. Periodicamente os dados são enviados para o Módulo Coordenador, e este, através do Roteador, envia requisições para a aplicação em nuvem. A aplicação em nuvem mostra os dados de consumo para o usuário através de diversos dispositivos que ele tenha em mãos como celulares, tablets e notebooks.
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=1\textwidth]{figuras/esqueminha.png}
 \caption{\label{fig:esqueminha} Esquema do Projeto}
-\end{figure}
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=1\textwidth]{figuras/diagrama_implantacao.png}
-\caption{\label{fig:diagrama_implantacao} Diagrama de implantação}
 \end{figure}
 
 A parte de hardware está separada em dois módulos principais: o Módulo Sensor e um Módulo Coordenador e a parte de software se resume à parte da aplicação Web na nuvem.
@@ -27,7 +21,6 @@ Coletados os dados, resta mostrar informações úteis ao usuário. Com o consum
 
 \begin{itemize}
 	\item{informar ao usuário sobre o consumo de energia por equipamento em sua residência}
-	\item{auxiliar o usuário a tomar decisões para diminuir o consumo de energia}
   \item{permitir o acesso às informações de consumo tanto localmente quanto remotamente}
 \end{itemize}
 
