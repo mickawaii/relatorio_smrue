@@ -1,8 +1,8 @@
 \section{Hardware}
 \label{Sec:hardware}
-\subsection{Módulo sensor}
+\subsection{Módulo Sensor}
 
-O módulo sensor vai ser responsável por medir e transmitir as informações necessárias para calcular o consumo de energia do equipamento acoplado.
+O módulo sensor é o responsável por medir e transmitir ao módulo coordenador as informações necessárias para calcular o consumo de energia do equipamento acoplado.
 
 Os componentes físicos do módulo sensor são:
 
@@ -14,9 +14,9 @@ Os componentes físicos do módulo sensor são:
 \item XBee 2mW PCB Antenna - Series 2
 \end{itemize}
 %
-\subsection{Coordenador}
+\subsection{Módulo Coordenador}
 
-O módulo coordenador vai ser responsável por fazer requisições para os módulos sensores, tratar os dados de consumo e enviar ao aplicativo na nuvem.
+O módulo coordenador é o responsável por receber mensagens dos módulos sensores, tratá-los e enviar os dados de consumo para a aplicação em nuvem.
 
 Os componentes do coordenador são:
 
@@ -59,6 +59,7 @@ Esse sensor de corrente (figura \ref{fig:sensor}) consegue medir a corrente que 
 \end{center}
 \end{figure}
 
+Algumas outras especificações são:
 \begin{itemize}
 \item{Corrente suportada: 30A}
 \item{Temperatura de operação: -40$^{\circ}$C até 65 $^{\circ}$C}
@@ -67,13 +68,14 @@ Esse sensor de corrente (figura \ref{fig:sensor}) consegue medir a corrente que 
 %
 \subsubsection{Raspberry Pi 2 modelo B}
 
-A Raspberry Pi 2 Modelo B (figura \ref{fig:raspberry pi}) é o computador utilizado no sistema para receber os dados enviados pelos módulos sensores, tratá-los e enviar para o aplicativo. Foi escolhido o Raspberry Pi 2 - Model B por ser mais veloz, por possuir mais entradas USB e ser de alta disponibilidade no mercado, por um preço razoável. O kit inclui a fonte, um cartão microSD de 8GB e um adaptador Wifi USB. Das características do raspberry, pode-se citar \cite{raspberry_datasheet}:
+A Raspberry Pi 2 Modelo B (figura \ref{fig:raspberry pi}) é o computador utilizado no sistema para receber os dados enviados pelos módulos sensores, tratá-los e enviá-los para a aplicação Web. Foi escolhido o Raspberry Pi por facilidade de projeto. Foi escolhido o modelo 2 - Model B por ser mais veloz, por possuir mais entradas USB e ser de alta disponibilidade no mercado, por um preço razoável. O kit inclui a fonte, um cartão microSD de 8GB e um adaptador Wifi USB. Mais detalhes estão no datasheet \cite{raspberry_datasheet}.
 
 \begin{figure}[H]
 \includegraphics[width=1\textwidth]{figuras/raspberry_pi.png}
 \caption{\label{fig:raspberry pi} Raspberry pi 2 modelo B}
 \end{figure}
 
+Especificações técnicas:
 \begin{itemize}
 \item{A 900MHz quad-core ARM Cortex-A7 CPU}
 \item{1GB RAM}
@@ -93,6 +95,7 @@ Arduino \cite{arduino_site} é uma placa programável open-source. No projeto em
 \caption{\label{fig:arduino uno} Arduino UNO R3}
 \end{figure}
 
+Algumas outras especificações são:
 \begin{itemize}
 \item{microcontrolador ATmega328}
 \item{tensão de entrada - 7-12V}
@@ -114,7 +117,6 @@ Arduino \cite{arduino_site} é uma placa programável open-source. No projeto em
 \end{figure}
 
 Algumas outras especificações são:
-
 \begin{itemize}
 \item{entradas de 3.3V @ 40mA}
 \item{transmissão de dados máxima de 250kbps}
