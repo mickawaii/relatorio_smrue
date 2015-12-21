@@ -1,4 +1,4 @@
-\subsection{Casos de uso}
+\section{Casos de uso}
 As funções obtidas foram divididas em casos de uso, como mostra a tabela \ref{tab:casos_de_uso}.
 %
 \begin{table}[H]
@@ -39,17 +39,17 @@ Configurar sistema & Configurar sistema\\
 \caption{\label{tab:casos_de_uso} Casos de Uso.}
 \end{table}
 %
-\subsection{Descrição dos casos de uso}
+\section{Descrição dos casos de uso}
 A seguir são descritos os casos de uso do sistema. 
 %
 % ************************************************
 % 1 - GERENCIAR CONTA
 % ************************************************
-\subsubsection{Função 1: Gerenciar conta}
+\subsection{Função 1: Gerenciar conta}
 
 O usuário pode fazer cadastro/alteração de conta e autenticação.
 
-\subsubsection{Caso de Uso 1.1: Fazer cadastro}
+\subsection{Caso de Uso 1.1: Fazer cadastro}
 \begin{description}
 	\item[Descrição:] inserção de um novo usuário comum no sistema
 	\item[Evento iniciador:] solicitação de cadastro
@@ -74,7 +74,7 @@ O usuário pode fazer cadastro/alteração de conta e autenticação.
 		\end{enumerate}
 \end{description}
 %
-\subsubsection{Caso de Uso 1.2: Fazer login}
+\subsection{Caso de Uso 1.2: Fazer login}
 \begin{description}
 	\item[Descrição:] criar uma sessão do usuário no sistema
 	\item[Evento iniciador:] solicitação de login
@@ -99,7 +99,7 @@ O usuário pode fazer cadastro/alteração de conta e autenticação.
 		\end{enumerate}
 \end{description}
 %
-\subsubsection{Caso de Uso 1.3: Fazer logout}
+\subsection{Caso de Uso 1.3: Fazer logout}
 \begin{description}
 	\item[Descrição:] encerrar a sessão do usuário atual no sistema
 	\item[Evento iniciador:] solicitação de logout
@@ -113,7 +113,7 @@ O usuário pode fazer cadastro/alteração de conta e autenticação.
 	\item[Pós-condição:] sessão encerrada e sistema exibe tela de login
 \end{description}
 %
-\subsubsection{Caso de Uso 1.4: Recuperar senha}
+\subsection{Caso de Uso 1.4: Recuperar senha}
 \begin{description}
 	\item[Descrição:] recuperar a senha do usuário
 	\item[Evento iniciador:] solicitação de recuperação de senha
@@ -144,10 +144,10 @@ O usuário pode fazer cadastro/alteração de conta e autenticação.
 % ************************************************
 % 2 - GERENCIAR EQUIPAMENTO
 % ************************************************
-\subsubsection{Função 2: Gerenciar equipamentos}
+\subsection{Função 2: Gerenciar equipamentos}
 O usuário pode fazer a criação, edição e remoção de equipamentos.
 %
-\subsubsection{Caso de Uso 2.1: Criar equipamento}
+\subsection{Caso de Uso 2.1: Criar equipamento}
 \begin{description}
 	\item[Descrição:] criar um novo equipamento
 	\item[Evento iniciador:] solicitação de criação de equipamento
@@ -172,7 +172,7 @@ O usuário pode fazer a criação, edição e remoção de equipamentos.
 		\end{enumerate}
 \end{description}
 %
-\subsubsection{Caso de Uso 2.2: Editar equipamento}
+\subsection{Caso de Uso 2.2: Editar equipamento}
 \begin{description}
 	\item[Descrição:] editar um equipamento
 	\item[Evento iniciador:] solicitação de edição de equipamento
@@ -196,7 +196,7 @@ O usuário pode fazer a criação, edição e remoção de equipamentos.
 		\end{enumerate}
 \end{description}
 %
-\subsubsection{Caso de Uso 2.3: Remover equipamento}
+\subsection{Caso de Uso 2.3: Remover equipamento}
 \begin{description}
 	\item[Descrição:] remover um equipamento
 	\item[Evento iniciador:] solicitação de remoção de equipamento
@@ -222,10 +222,10 @@ O usuário pode fazer a criação, edição e remoção de equipamentos.
 % ************************************************
 % 3 - GERENCIAR SENSORES
 % ************************************************
-\subsubsection{Função 3: Gerenciar sensores}
+\subsection{Função 3: Gerenciar sensores}
 Os módulos sensores são auto-detectados, e o usuário pode editá-los ou removê-los.
 %
-\subsubsection{Caso de Uso 3.1: Detectar sensor}
+\subsection{Caso de Uso 3.1: Detectar sensor}
 \begin{description}
 	\item[Descrição:] detectar um sensor
 	\item[Evento iniciador:] solicitação de detecção de sensores
@@ -247,7 +247,7 @@ Os módulos sensores são auto-detectados, e o usuário pode editá-los ou remov
 		\end{enumerate}
 \end{description}
 %
-\subsubsection{Caso de Uso 3.2: Editar sensor}
+\subsection{Caso de Uso 3.2: Editar sensor}
 \begin{description}
 	\item[Descrição:] editar um sensor
 	\item[Evento iniciador:] solicitação de edição de sensor
@@ -271,7 +271,7 @@ Os módulos sensores são auto-detectados, e o usuário pode editá-los ou remov
 		\end{enumerate}
 \end{description}
 %
-\subsubsection{Caso de Uso 3.3: Remover sensor}
+\subsection{Caso de Uso 3.3: Remover sensor}
 \begin{description}
 	\item[Descrição:] remover um sensor
 	\item[Evento iniciador:] solicitação de remoção de sensor
@@ -297,10 +297,10 @@ Os módulos sensores são auto-detectados, e o usuário pode editá-los ou remov
 % ************************************************
 % 4 - GERENCIAR META
 % ************************************************
-\subsubsection{Função 4: Gerenciar metas}
+\subsection{Função 4: Gerenciar metas}
 O usuário pode criar, editar e remover metas mensais.
 %
-\subsubsection{Caso de Uso 4.1: Criar meta}
+\subsection{Caso de Uso 4.1: Criar meta}
 \begin{description}
 	\item[Descrição:] criar uma nova meta
 	\item[Evento iniciador:] solicitação de criação de meta
@@ -325,7 +325,7 @@ O usuário pode criar, editar e remover metas mensais.
 		\end{enumerate}
 \end{description}
 %
-\subsubsection{Caso de Uso 4.2: Editar meta}
+\subsection{Caso de Uso 4.2: Editar meta}
 \begin{description}
 	\item[Descrição:] editar uma meta
 	\item[Evento iniciador:] solicitação de edição de meta
@@ -349,7 +349,7 @@ O usuário pode criar, editar e remover metas mensais.
 		\end{enumerate}
 \end{description}
 %
-\subsubsection{Caso de Uso 4.3: Remover meta}
+\subsection{Caso de Uso 4.3: Remover meta}
 \begin{description}
 	\item[Descrição:] remover uma meta
 	\item[Evento iniciador:] solicitação de remoção de meta
@@ -375,10 +375,10 @@ O usuário pode criar, editar e remover metas mensais.
 % ************************************************
 % 5 - GERENCIAR CONSUMO
 % ************************************************
-\subsubsection{Função 5: Gerenciar consumos}
+\subsection{Função 5: Gerenciar consumos}
 O Módulo Coordenador envia consumos para o sistema. O usuário pode visualizar os consumos através de gráficos. Além disso o usuário pode importar ou exportar dados de consumo.
 %
-\subsubsection{Caso de Uso 5.1: Criar consumo}
+\subsection{Caso de Uso 5.1: Criar consumo}
 \begin{description}
 	\item[Descrição:] inserir consumos no sistema
 	\item[Evento iniciador:] solicitação para criação de consumo
@@ -396,7 +396,7 @@ O Módulo Coordenador envia consumos para o sistema. O usuário pode visualizar 
 		\end{enumerate}
 \end{description}
 %
-\subsubsection{Caso de Uso 5.2: Visualizar consumo}
+\subsection{Caso de Uso 5.2: Visualizar consumo}
 \begin{description}
 	\item[Descrição:] visualizar os consumos na forma de gráficos
 	\item[Evento iniciador:] solicitação de geração de gráfico
@@ -418,7 +418,7 @@ O Módulo Coordenador envia consumos para o sistema. O usuário pode visualizar 
 		\end{enumerate}
 \end{description}
 %
-\subsubsection{Caso de Uso 5.3: Importar consumos}
+\subsection{Caso de Uso 5.3: Importar consumos}
 \begin{description}
 	\item[Descrição:] importar consumos por csv
 	\item[Evento iniciador:] solicitação de importação de consumos
@@ -436,7 +436,7 @@ O Módulo Coordenador envia consumos para o sistema. O usuário pode visualizar 
 		\end{enumerate}
 \end{description}
 %
-\subsubsection{Caso de Uso 5.4: Exportar consumos}
+\subsection{Caso de Uso 5.4: Exportar consumos}
 \begin{description}
 	\item[Descrição:] exportar consumos por csv
 	\item[Evento iniciador:] solicitação de exportação de consumos
@@ -456,7 +456,7 @@ O Módulo Coordenador envia consumos para o sistema. O usuário pode visualizar 
 % ************************************************
 % 6 - ATUALIZAR TAXAS DA AES
 % ************************************************
-\subsubsection{Caso de Uso 6: Atualizar taxas da AES}
+\subsection{Caso de Uso 6: Atualizar taxas da AES}
 \begin{description}
 	\item[Descrição:] atualizar dados de custo da AES Eletropaulo no sistema
 	\item[Evento iniciador:] solicitação de atualização das taxas
@@ -480,7 +480,7 @@ O Módulo Coordenador envia consumos para o sistema. O usuário pode visualizar 
 % ************************************************
 % 7 - CONFIGURAR SISTEMA
 % ************************************************
-\subsubsection{Caso de Uso 7: Configurar sistema}
+\subsection{Caso de Uso 7: Configurar sistema}
 \begin{description}
 	\item[Descrição:] mudar configuração do sistema
 	\item[Evento iniciador:] solicitação de mudança de configuração do sistema

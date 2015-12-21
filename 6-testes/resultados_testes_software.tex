@@ -1,0 +1,249 @@
+\begin{description}
+  \section{Caso de teste 1: Realizar Login}
+  \item[Testes feitos:]
+  \begin{enumerate}
+    \item{fazer login com nome de usuário errado}
+    \item{fazer login com senha errada}
+    \item{fazer login com informações certas}
+  \end{enumerate}
+  \item[Problemas:]
+  \begin{enumerate}
+    \item{Nos testes 3 e 4 não aparecem mensagens de erro}
+  \end{enumerate}
+  \item[Correções feitas:]
+  \begin{enumerate}
+    \item{Colocada uma mensagem de erro quando uma identificação está errada}
+  \end{enumerate}
+
+  \section{Caso de teste 2: importar os dados de consumo de um equipamento}
+  \item[Testes feitos:]
+  \begin{enumerate}
+    \item{Importação de um arquivo qualquer}
+    \item{Importação de um csv com formatação errada no data}
+    \item{Importação de um csv usando virgulas e pontos como separadores decimais}
+    \item{Importação de um csv formatado corretamente}
+  \end{enumerate}
+  \item[Problemas:]
+  \begin{enumerate}
+    \item{Nos testes 2 e 3 não aparecem mensagens de erro legíveis}
+    \item{Nos testes 4, existem problemas de horários inexistentes devido ao horário de verão}
+  \end{enumerate}
+  \item[Correções feitas:]
+  \begin{enumerate}
+    \item{Adição de menssagens de erro da linha do arquivo e qual o erro gerado}
+  \end{enumerate}
+
+  \section{Caso de teste 3: Visualizar o consumo através de gráficos por equipamento ou total}
+  \item[Testes feitos:]
+  Com o banco populado com medidas:
+  \begin{enumerate}
+    \item{Visualização de dados por hora}
+    \item{Visualização de dados por dia}
+    \item{Visualização de dados por mês}
+    \item{Visualização de metas de consumo}
+    \item{Visualização de dados por hora integrado}
+    \item{Visualização de dados por hora em reais}
+    \item{Visualização de dados por hora de três equipamentos diferentes}
+  \end{enumerate}
+  \item[Problemas:]
+  \begin{enumerate}
+    \item{Nos teste 1, devido a como foi implementado, o gráfico não mostra os dados por hora, mas pela granularidade de tempo em que os dados se encontram no banco de dados}
+  \end{enumerate}
+  \item[Correções feitas:]
+  \begin{enumerate}
+    \item{Corrigido a maneira que a API calcula os dados por hora para levar em consideração o tempo e não apenas devolver os dados que se encontram entre os limites dados}
+  \end{enumerate}
+
+  \section{Caso de teste 4: Obtenção dos dados da AES eletropaulo}
+  \item[Testes feitos:]
+  \begin{enumerate}
+    \item{Obtenção de dados em um dia qualquer}
+    \item{Obtenção de dados após a data de validade do primeiro teste}
+  \end{enumerate}
+  \item[Problemas:]
+  \begin{enumerate}
+    \item{No teste 2, foi descoberto que como a implementação é dependente da estrutura do site da eletropaulo, caso essa estrutura mude, a obtenção de dados não funciona}
+  \end{enumerate}
+  \item[Correções feitas:]
+  \begin{enumerate}
+    \item{O problema só é solúvel com manutenções periódicas}
+  \end{enumerate}
+
+
+  \section{Caso de teste 5: Criar equipamento}
+  \item[Testes feitos:]
+  \begin{enumerate}
+    \item{Criação da entidade com um nominal\_power (float) com letras}
+    \item{Criação da entidade com um approximated\_consumption (float) com letras}
+    \item{Criação da entidade com informações válidas}
+  \end{enumerate}
+  \item[Problemas:]
+  \begin{enumerate}
+    \item{Nos testes 1 e 2, não criou mas também não avisou quais foram os erros}
+  \end{enumerate}
+  \item[Correções feitas:]
+  \begin{enumerate}
+    \item{Adição das mensagens de erro para os dois casos de teste 1 e 2}
+  \end{enumerate}
+
+  \section{Caso de teste 6: Modificar equipamento}
+  \item[Testes feitos:]
+  \begin{enumerate}
+    \item{Modificação da entidade com um nominal\_power (float) com letras}
+    \item{Modificação da entidade com um approximated\_consumption (float) com letras}
+  \end{enumerate}
+  \item[Problemas:]
+  \begin{enumerate}
+    \item{-}
+  \end{enumerate}
+  \item[Correções feitas:]
+  \begin{enumerate}
+    \item{-}
+  \end{enumerate}  
+
+  \section{Caso de teste 7: Excluir equipamento}
+  \item[Testes feitos:]
+  \begin{enumerate}
+    \item{Exclusão de uma entidade}
+  \end{enumerate}
+  \item[Problemas:]
+  \begin{enumerate}
+    \item{-}
+  \end{enumerate}
+  \item[Correções feitas:]
+  \begin{enumerate}
+    \item{-}
+  \end{enumerate}
+
+  \section{Caso de teste 8: Listagem de equipamentos}
+  \item[Testes feitos:]
+  \begin{enumerate}
+    \item{Visualização de uma entidade}
+  \end{enumerate}
+  \item[Problemas:]
+  \begin{enumerate}
+    \item{-}
+  \end{enumerate}
+  \item[Correções feitas:]
+  \begin{enumerate}
+    \item{-}
+  \end{enumerate}
+
+  \section{Caso de teste 9: Criar sensor}
+  \item[Testes feitos:]
+  \begin{enumerate}
+    \item{Introdução de dois módulos sensores novos no sistema para cadastro automático}
+  \end{enumerate}
+  \item[Problemas:]
+  \begin{enumerate}
+    \item{-}
+  \end{enumerate}
+  \item[Correções feitas:]
+  \begin{enumerate}
+    \item{-}
+  \end{enumerate}  
+
+  \section{Caso de teste 10: Modificar sensor}
+  \item[Testes feitos:]
+  \begin{enumerate}
+    \item{Modificação do nome do sensor}
+  \end{enumerate}
+  \item[Problemas:]
+  \begin{enumerate}
+    \item{-}
+  \end{enumerate}
+  \item[Correções feitas:]
+  \begin{enumerate}
+    \item{-}
+  \end{enumerate}  
+
+  \section{Caso de teste 11: Excluir sensor}
+  \item[Testes feitos:]
+  \begin{enumerate}
+    \item{Exclusão de um sensor}
+  \end{enumerate}
+  \item[Problemas:]
+  \begin{enumerate}
+    \item{-}
+  \end{enumerate}
+  \item[Correções feitas:]
+  \begin{enumerate}
+    \item{-}
+  \end{enumerate}
+
+  \section{Caso de teste 12: Listagem de sensores}
+  \item[Testes feitos:]
+  \begin{enumerate}
+    \item{Visualização de um sensor}
+  \end{enumerate}
+  \item[Problemas:]
+  \begin{enumerate}
+    \item{-}
+  \end{enumerate}
+  \item[Correções feitas:]
+  \begin{enumerate}
+    \item{-}
+  \end{enumerate}
+
+  \section{Caso de teste 13: Criar meta}
+  \item[Testes feitos:]
+  \begin{enumerate}
+    \item{Criação de meta sem medidas anteriores}
+    \item{Criação de meta para meses que não são seguintes sem medidas anteriores}
+    \item{Criação de meta para meses que não são seguintes com medidas anteriores (apenas o mês anterior)}
+  \end{enumerate}
+  \item[Problemas:]
+  \begin{enumerate}
+    \item{Nos testes 1 e 2 ocorreu um erro onde a meta não foi cadastrada e nenhum indicativo do erro aparecia}
+    \item{No teste 3, pra criação da meta, foi considerado um mês errado como o de comparação}
+  \end{enumerate}
+  \item[Correções feitas:]
+  \begin{enumerate}
+    \item{Colocado uma mensagem de erro para tais ocasiões indicando qual o erro}
+    \item{Foi restringida a criação de metas para o mes seguinte apenas}
+  \end{enumerate}  
+
+  \section{Caso de teste 14: Modificar meta}
+  \item[Testes feitos:]
+  \begin{enumerate}
+    \item{Modificação do nome da meta}
+    \item{Modificação da porcentagem relativa da meta com números acima de 100\%}
+  \end{enumerate}
+  \item[Problemas:]
+  \begin{enumerate}
+    \item{No teste 2, o valor foi usado normalmente para a meta}
+  \end{enumerate}
+  \item[Correções feitas:]
+  \begin{enumerate}
+    \item{O valor da meta foi concluído como um valor que é de responsabilidade do usuário, por isso foi retirado o limite desse de um máximo de 100}
+  \end{enumerate}  
+
+  \section{Caso de teste 15: Excluir meta}
+  \item[Testes feitos:]
+  \begin{enumerate}
+    \item{Exclusão de uma meta}
+  \end{enumerate}
+  \item[Problemas:]
+  \begin{enumerate}
+    \item{-}
+  \end{enumerate}
+  \item[Correções feitas:]
+  \begin{enumerate}
+    \item{-}
+  \end{enumerate}
+
+  \section{Caso de teste 16: Listagem de metas}
+  \item[Testes feitos:]
+  \begin{enumerate}
+    \item{Visualização de uma meta}
+  \end{enumerate}
+  \item[Problemas:]
+  \begin{enumerate}
+    \item{-}
+  \end{enumerate}
+  \item[Correções feitas:]
+  \begin{enumerate}
+    \item{-}
+  \end{enumerate}
+
+\end{description}
