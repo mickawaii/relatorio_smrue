@@ -8,7 +8,7 @@
 
 \chapter{Descrição das classes}
 \label{apendice_classes}
-\subsubsection{Equipment}
+\section{Equipment}
 \begin{description}
   \item[Classe:] Equipment
   \item[Descrição:] Representa um equipamento na aplicação. Os equipamentos são criados pelos usuários dentro do sistema. É necessário possuir um sensor associado para que o equipamento possa ser associado a um consumo.
@@ -29,7 +29,7 @@
     \end{enumerate}
 \end{description} 
 %
-\subsubsection{Sensor}
+\section{Sensor}
 \begin{description}
   \item[Classe:] Sensor
   \item[Descrição:] Representa um sensor na aplicação. Os sensores são criados automaticamente pelo sistema ao receber um consumo de um sensor não registrado. O usuário poderá, então, editar o nome do sensor. Porém, como não há dado que indique em qual aparelho o sensor foi instalado, tal associação deve ser feita através de configuração (Caso de uso Configurar sistema). Caso um sensor seja alocado de um equipamento para outro, os novos consumos passarão a pertencer ao segundo equipamento.
@@ -46,7 +46,7 @@
     \end{enumerate}
 \end{description} 
 %
-\subsubsection{Consumption}
+\section{Consumption}
 \begin{description}
   \item[Classe:] Consumption
   \item[Descrição:] Representa uma medida de consumo feita de um equipamento em um dado instante. Quando um consumo é enviado ao sistema, o valor da corrente, tensão e identificador do sensor são enviados. Caso o identificador do sensor não exista dentro do sistema, uma nova instância de sensor será criada. A partir do momento em que o sensor tiver um equipamento associado, consumos para aquele equipamento poderão ser criados. Caso um sensor seja alocado de um equipamento para outro, os consumos para o equipamento anterior vão continuar pertencendo ao mesmo, enquanto os novos consumos pertencerão ao segundo equipamento.
@@ -64,7 +64,7 @@
     \end{enumerate}
 \end{description} 
 %
-\subsubsection{User}
+\section{User}
 \begin{description}
   \item[Classe:] User
   \item[Descrição:] Representa um usuário do sistema. 
@@ -78,7 +78,7 @@
     \end{enumerate}
 \end{description} 
 %
-\subsubsection{Goal}
+\section{Goal}
 \begin{description}
   \item[Classe:] Goal
   \item[Descrição:] Representa uma meta de consumo para um mês. Ao cadastrar a meta, ela calcula um valor igual a percentagem (value\_in\_percent) do total de consumo para um equipamento no mês anterior. Ao ser traçado o gráfico do mês pertencente ao da meta para aquele equipamento, um gráfico com o valor da meta será exibido.
@@ -98,7 +98,7 @@
     \end{enumerate}
 \end{description} 
 %
-\subsubsection{AESRate}
+\section{AESRate}
 \begin{description}
   \item[Classe:] AESRate
   \item[Descrição:] Representa a taxa de conversão da AES eletropaulo de kilowatts hora para reais. Esses valores são obtidos através da página de tarifas do site da AES Eletropaulo \cite{aes_site}. Caso o usuário queira visualizar o consumo em reais, o usuário deve escolher a opção de integrar o gráfico também (pois as tarifas são calculadas em função da energia consumida, e não em função potência consumida em dado instante). Em seguida, o sistema identifica qual taxa de conversão, dependendo da data do consumo (deve ser maior ou igual a valid\_date), tipo de renda (se é igual ao atributo name), faixa de consumo (o valor de consumo deve ser maior ou igual a range\_start e menor ou igual a range\_end). Identificada a taxa, o sistema multiplica o valor de cada ponto do gráfico com a soma de TE e TUSD da taxa para converter em reais.
@@ -114,3 +114,7 @@
         \item range\_end (float): o fim da faixa de consumo que define a taxa de conversão
     \end{enumerate}
 \end{description} 
+
+\chapter{Testes do software}
+\label{apendice_software_tests}
+\input{6-testes/resultados_testes_software.tex}
