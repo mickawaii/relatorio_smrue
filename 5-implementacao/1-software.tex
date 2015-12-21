@@ -29,7 +29,7 @@ Vários casos de uso especificados anteriormente possuem uma certa interdependê
 
 Antes de implementar os casos de uso, as classes iniciais foram adaptadas para os Models do Django e a organização das classes no framework está representada na figura \ref{fig:diagrama-models}. Essas classes são responsáveis por acessar, criar, alterar ou remover dados dos equipamentos, sensores, taxas da AES, metas e usuários do banco de dados. Nos diagramas de classes simplificados a seguir foram representadas apenas as classes criadas para o projeto e as classes às quais estão diretamente relacionadas, ou seja, as demais classes do Django estão omitidas. A diferença observada em relação ao primeiro diagrama de classes (figura \ref{fig:diagrama-classes}) foi o fato de haver uma classe pré-existente User. A opção mais adequada para esse caso é criar um Model diferente (chamada Profile nesse caso) que tenha uma Foreign Key para um User. A partir de então, um usuário pode possuir um atributo adicional - income\_type - bastando criar um objeto da classe Profile e colocar uma Foreign Key para User. Essa é a opção mais adequada, uma vez que não é necessário criar uma nova classe de usuário, reescrevendo todos os atributos e métodos que o Django já oferece.
 
-\begin{figure}
+\begin{figure}[H]
 \centering
 \includegraphics[width=14cm,keepaspectratio]{figuras/diagrama_models.png}
 \caption{\label{fig:diagrama-models} Diagrama de Classes - Models}
@@ -43,7 +43,7 @@ No projeto em questão são utilizados Controllers Principais (figura \ref{fig:d
 	\item[LogoutView:] Encerra a sessão do usuário.
 \end{description} 
 
-\begin{figure}
+\begin{figure}[H]
 \centering
 \includegraphics[width=14cm,keepaspectratio]{figuras/diagrama_cont_principal.png}
 \caption{\label{fig:diagrama-cont-principal} Diagrama de Classes - Controllers Principais}
@@ -57,7 +57,7 @@ Os Controllers que lidam com os equipamentos estão representados na figura \ref
 	\item[DeleteView:] Remove um equipamento.
 \end{description} 
 
-\begin{figure}
+\begin{figure}[H]
 \centering
 \includegraphics[width=14cm,keepaspectratio]{figuras/diagrama_cont_equipment.png}
 \caption{\label{fig:diagrama-cont-equipment} Diagrama de Classes - Controllers de Equipamentos}
@@ -70,7 +70,7 @@ Os Controllers que lidam com os sensores estão representados na figura \ref{fig
 	\item[DeleteView:] Remove um sensor.
 \end{description} 
 
-\begin{figure}
+\begin{figure}[H]
 \centering
 \includegraphics[width=10cm,keepaspectratio]{figuras/diagrama_cont_sensor.png}
 \caption{\label{fig:diagrama-cont-sensor} Diagrama de Classes - Controllers de Sensores}
@@ -81,7 +81,7 @@ Os Controllers que lidam com as taxas da AES estão representados na figura \ref
 	\item[IndexView:] Exibe página de listagem das taxas AES.
 \end{description} 
 
-\begin{figure}
+\begin{figure}[H]
 \centering
 \includegraphics[width=3cm,keepaspectratio]{figuras/diagrama_cont_aesrate.png}
 \caption{\label{fig:diagrama-cont-aesrate} Diagrama de Classes - Controllers de Taxas da AES}
@@ -99,7 +99,7 @@ Os Controllers que lidam com as configurações do sistema (e do usuário) estã
 	\item[PasswordResetDoneView:] Redireciona depois da reconfiguração de senha do usuário.
 \end{description} 
 
-\begin{figure}
+\begin{figure}[H]
 \centering
 \includegraphics[width=16cm,keepaspectratio]{figuras/diagrama_cont_configuration.png}
 \caption{\label{fig:diagrama-cont-configuration} Diagrama de Classes - Controllers de Configuração}
@@ -113,7 +113,7 @@ Os Controllers que lidam com as metas estão representados na figura \ref{fig:di
 	\item[DeleteView:] Remove uma meta.
 \end{description} 
 
-\begin{figure}
+\begin{figure}[H]
 \centering
 \includegraphics[width=14cm,keepaspectratio]{figuras/diagrama_cont_goal.png}
 \caption{\label{fig:diagrama-cont-goal} Diagrama de Classes - Controllers de Metas}
@@ -124,7 +124,7 @@ Os Controllers que lidam com os consumos estão representados na figura \ref{fig
 	\item[GraphicView:] Exibe o gráfico de consumo
 \end{description} 
 
-\begin{figure}
+\begin{figure}[H]
 \centering
 \includegraphics[width=3cm,keepaspectratio]{figuras/diagrama_cont_consumption.png}
 \caption{\label{fig:diagrama-cont-consumption} Diagrama de Classes - Controllers de Consumos}

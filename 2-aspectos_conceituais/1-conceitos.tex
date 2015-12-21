@@ -1,7 +1,7 @@
 \chapter{Aspectos Conceituais}
 \label{Cap:conceitos}
 
-As técnicas de monitoramento e sensoriamento podem ser usados para as mais diversas funções e implementadas de diversas maneiras. Nesse trabalho, são usadas técnicas, arquiteturas e tecnologias para monitorar o consumo de energia elétrica em um ambiente residencial por uma rede de sensores na qual cada sensor da rede transmite seus dados a um componente central que se comunica com uma aplicação em nuvem  \cite{low_cost_wireless_sensor_network_SMF_master_thesis}.
+As técnicas de monitoramento e sensoriamento podem ser usados para as mais diversas funções e implementadas de diversas maneiras. Nesse trabalho, são usadas técnicas, arquiteturas e tecnologias para monitorar o consumo de energia elétrica em um ambiente residencial por uma rede de sensores na qual cada sensor da rede transmite seus dados a um componente central que se comunica com uma aplicação em nuvem  \cite{low_cost_wireless_sensor_network_SMF_master_thesis} \cite{IP_based_wsn_AVFE_article}.
 
 São abordados vários conceitos vistos em aula. Um deles engloba o universo dos protocolos e componentes de uma rede sem fio. Isso envolve o estudo do protocolo que será utilizado nesse projeto, que é o ZigBee, devido ao seu grande uso na área o que implica em uma grande fonte de informações sobre este\cite{xbee_book}\cite{sensor_network_book}\cite{low_cost_wireless_sensor_network_SMF_master_thesis}. Junto a isso são estudados a montagem de circuitos de sensores associados a microcontroladores e a captação dos dados dos sensores por uma central.
 
@@ -18,7 +18,7 @@ Além disso é estudado o desenvolvimento de aplicações para Web e arquitetura
 
 A arquitetura MVC é a mais utilizada nos dias atuais para a concepção de aplicativos web, uma vez que ela permite a implementação de um sistema de melhor manutenção ao separar responsabilidades nas camadas de Model, View e Controller \cite{MVC_design} (figura \ref{fig:mvc})
 
-\begin{figure}
+\begin{figure}[H]
 \centering
 \includegraphics[width=10cm,keepaspectratio]{figuras/MVC.jpg}
 \caption{\label{fig:mvc} Arquitetura MVC}
@@ -44,16 +44,17 @@ Wireless Sensor Network, também conhecido como WSN, é um termo genérico que d
  
 \section{Topologias de Rede}
 \label{Sec:Redes_topologias}
- Como os nós dos sensores formam uma rede, é necessário analisar as possibilidades de redes.  Como são usados XBees para formar essa rede de sensores, deve-se atentar aos tipos de rede possíveis \cite{xbee_book} \cite{xbee_documentation}.
+ Como os nós dos sensores formam uma rede, é necessário analisar as possibilidades de redes. Como são usados XBees para formar essa rede de sensores, deve-se atentar aos tipos de rede possíveis \cite{xbee_book} \cite{xbee_documentation}.
  
-\begin{figure}[H]
-\centering
-\includegraphics[width=10cm,keepaspectratio]{figuras/zigbee_network_topology.jpg}
-\caption{\label{fig:zigbee_network} Topologia de uma rede zigbee}
-fonte: \url{http://ftp1.digi.com/support/documentation/html/90001399/90001399_A/Files/XBee-concepts.html}
-\end{figure}
- 
- A rede ZigBee é composta por nós que podem ser de três tipos:
+ A rede ZigBee é composta por nós que podem ser de três tipos (figura \ref{fig:zigbee_network}):
+
+  \begin{figure}[H]
+  \centering
+  \includegraphics[width=10cm,keepaspectratio]{figuras/zigbee_network_topology.jpg}
+  \caption{\label{fig:zigbee_network} Topologia de uma rede zigbee}
+  fonte: \url{http://ftp1.digi.com/support/documentation/html/90001399/90001399_A/Files/XBee-concepts.html}
+  \end{figure}
+
  \begin{itemize}
 \item{Coordenador}: Nó destino (final) de todos os outros nós, concentrando os dados de todos os nós. Todas as redes possuem apenas um nó desse tipo e como esse tipo de nó não possui a capacidade de dormir ele não deveria ficar em um dispositivo com uma bateria limitada.
 \item{Roteador}: Funciona apenas como uma ponte intermediária entre os endpoints e o coordenador, podendo se comunicar com todos os outros tipos de nós, mas também não possuem a capacidade de dormir, logo não podem ser energizados com uma bateria limitada. Normalmente são usados para estender a área de uma rede, aumentando o alcance sensoreada da rede como um todo.
