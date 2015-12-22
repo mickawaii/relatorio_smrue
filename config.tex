@@ -5,9 +5,9 @@
 	twoside,			% para impressão em verso e anverso. Oposto a oneside
 	a4paper,			% tamanho do papel. 
 	% -- opções da classe abntex2 --
-	%chapter=TITLE,		% títulos de capítulos convertidos em letras maiúsculas
-	%section=TITLE,		% títulos de seções convertidos em letras maiúsculas
-	%subsection=TITLE,	% títulos de subseções convertidos em letras maiúsculas
+	chapter=TITLE,		
+	%section=TITLE,		
+	%subsection=TITLE,	
 	%subsubsection=TITLE,% títulos de subsubseções convertidos em letras maiúsculas
 	% -- opções do pacote babel --
 	english,			% idioma adicional para hifenização			
@@ -69,8 +69,8 @@
 % ---
 % Informações de dados para CAPA e FOLHA DE ROSTO
 % ---
-\titulo{Sistema de Monitoramento Residencial de Uso de Energia}
-\autor{Henrique Sussumu Matsui Kano \& Mi Che Li Lee}
+\titulo{SISTEMA DE MONITORAMENTO RESIDENCIAL DE USO DE ENERGIA}
+\autor{HENRIQUE SUSSUMU MATSUI KANO \& MI CHE LI LEE}
 \local{São Paulo}
 \date{2015}
 \orientador{Professor Doutor Carlos Eduardo Cugnasca}
@@ -131,7 +131,52 @@
 \makeindex
 % ---
 
+% ---
+% customizando a capa
+% ---
 \renewcommand{\lstlistingname}{Código}
+
+\renewcommand{\imprimircapa}{%
+	\begin{capa}%
+		\center
+		{\ABNTEXchapterfont\large\imprimirautor}
+		\vspace*{9cm}
+		\begin{center}
+		\ABNTEXchapterfont\bfseries\Large\imprimirtitulo
+		\end{center}
+		\vfill
+		\large\imprimirlocal\\
+		\large\imprimirdata
+	\vspace*{1cm}
+	\end{capa}
+}
+
+% ---
+% customizando a folha de rosto
+% ---
+\renewcommand{\folhaderostocontent}{
+	\begin{center}
+		{\ABNTEXchapterfont\large\imprimirautor}
+		\vspace*{9cm}
+		\begin{center}
+			\ABNTEXchapterfont\bfseries\Large\imprimirtitulo
+		\end{center}
+		\vspace*{\fill}
+		\hspace{0.5\textwidth}
+		\begin{minipage}{0.5\textwidth}
+			\vfill
+			\imprimirpreambulo
+			\vspace*{1cm}\\
+			Área de concentração:\\
+			Engenharia da Computação
+			\vspace*{1cm}\\
+			\imprimirorientadorRotulo~\imprimirorientador\par
+			\vspace*{2cm}
+		\end{minipage}
+		\large\imprimirlocal\\
+		\large\imprimirdata
+	\end{center}
+}
 
 \lstset{%
   backgroundcolor=\color{lightgray},
